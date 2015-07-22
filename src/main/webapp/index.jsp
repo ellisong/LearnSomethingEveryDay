@@ -16,11 +16,12 @@
 	<title>Learn Something Every Day!</title>
 </head>
 <body>
-    <%= request.getContextPath() %>
 	<%
         //String pass = DatabaseConnection.getPasswordFromFile("/home/commlaptop/sql.txt");
         String pass = DatabaseConnection.getPasswordFromFile("D:/projects/LearnSomethingEveryDay/sql.txt");
-        DatabaseConnection db = new DatabaseConnection("lsed_db", "guest", pass, "localhost", 3306);
+        String connectionString = DatabaseConnection.createDatabaseConnectionString("localhost", 3306, "lsed_db");
+        DatabaseConnection db = new DatabaseConnection();
+        db.connectToMySqlDatabase(connectionString, "guest", pass);
 
         TableDrawer td = new TableDrawer();
         ArrayList<String> values = new ArrayList<String>();

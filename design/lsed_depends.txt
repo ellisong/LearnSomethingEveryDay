@@ -1,12 +1,12 @@
 needed to configure project:
 	install web tools platform (eclipse?)
 	create a web application project
-	configure as an ant or maven project
+	configure as a maven or ant project
 	add mysql connector jar to tomcatdirectory/lib
 	add mysql connector jar to project dependencies
 	add javaee web api 7 to project dependencies
 	add connection pool to database in context.xml
-	add application context (to connection pool) in WEB-INF/web.xml
+	add application context (connected to connection pool) in WEB-INF/web.xml
 	use java 7 or 8 with tomcat 8
 	type in database info in DatabaseConnector source file
 	IF ON WINDOWS: in C:\Program Files\Apache Software Foundation\Apache Tomcat 8.0.15\bin\catalina.bat:
