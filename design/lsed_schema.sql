@@ -20,7 +20,7 @@ USE `lsed_db` ;
 -- -----------------------------------------------------
 -- Table `lsed_db`.`user`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lsed_db`.`user` (
+CREATE TABLE IF NOT EXISTS `lsed_db`.`USER` (
   `UserId` INT(11) NOT NULL AUTO_INCREMENT,
   `Username` VARCHAR(32) NOT NULL,
   `Email` VARCHAR(64) NOT NULL,
@@ -35,7 +35,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `lsed_db`.`card`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lsed_db`.`card` (
+CREATE TABLE IF NOT EXISTS `lsed_db`.`CARD` (
   `CardId` INT(11) NOT NULL AUTO_INCREMENT,
   `USER_UserId` INT(11) NOT NULL,
   `Title` VARCHAR(64) NOT NULL,
@@ -59,7 +59,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `lsed_db`.`category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lsed_db`.`category` (
+CREATE TABLE IF NOT EXISTS `lsed_db`.`CATEGORY` (
   `CategoryId` INT(11) NOT NULL AUTO_INCREMENT,
   `Category` VARCHAR(32) NOT NULL,
   PRIMARY KEY (`CategoryId`),
@@ -72,7 +72,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `lsed_db`.`card_category`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lsed_db`.`card_category` (
+CREATE TABLE IF NOT EXISTS `lsed_db`.`CARD_CATEGORY` (
   `CardCategoryId` INT(11) NOT NULL AUTO_INCREMENT,
   `CATEGORY_CategoryId` INT(11) NOT NULL,
   `CARD_CardId` INT(11) NOT NULL,
@@ -98,7 +98,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `lsed_db`.`prerequisite`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lsed_db`.`prerequisite` (
+CREATE TABLE IF NOT EXISTS `lsed_db`.`PREREQUISITE` (
   `PrerequisiteId` INT(11) NOT NULL AUTO_INCREMENT,
   `Prerequisite` VARCHAR(128) NOT NULL,
   PRIMARY KEY (`PrerequisiteId`),
@@ -111,7 +111,7 @@ DEFAULT CHARACTER SET = utf8;
 -- -----------------------------------------------------
 -- Table `lsed_db`.`card_prerequisite`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `lsed_db`.`card_prerequisite` (
+CREATE TABLE IF NOT EXISTS `lsed_db`.`CARD_PREREQUISITE` (
   `CardPrerequisiteId` INT(11) NOT NULL AUTO_INCREMENT,
   `CARD_CardId` INT(11) NOT NULL,
   `CARD_USER_UserId` INT(11) NOT NULL,
