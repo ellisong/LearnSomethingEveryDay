@@ -1,0 +1,32 @@
+h1 {
+	text-align: center;
+	font-weight: bold;
+    font-size: large;
+}
+
+body {
+	background-color: #FFFFFF;
+}
+
+.card-table {   
+	border-collapse: collapse;
+}
+ 
+.card-table-header {
+	text-align: center;
+	background: none repeat scroll 0 0 #C3C3C3;
+	border: 1px solid #000000;
+	padding: 2px;
+}
+ 
+.card-table-odd-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #000000;
+}
+ 
+.card-table-even-row {
+	text-align: center;
+	background: none repeat scroll 0 0 #ECECEC;
+    border: 1px solid #000000;
+}
