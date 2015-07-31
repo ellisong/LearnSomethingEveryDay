@@ -12,3 +12,25 @@ needed to configure project:
 	IF ON WINDOWS: in C:\Program Files\Apache Software Foundation\Apache Tomcat 8.0.15\bin\catalina.bat:
 		remove quotation marks (") around set options noJuliConfig and noJuliManager
 			a catalina.bat file for this has been provided with the options set correctly.
+
+1. open project in netbeans
+2. on top left, click services tab
+3. right click server, select create server
+4. select glassfish and a directory for your server
+5. let it download
+6. allow through windows firewall if it pops up
+7. type in website info if needed, default works for localhost
+8. right click database and create a new connection. a database for localhost is left inside the project.
+9. select mysql (connector/j driver). netbeans should have the driver by default.
+10. type in database credentials
+11. test connection
+12. if connection succeeded, click finish, otherwise go back to step 8
+13. click projects tab on top left of IDE
+14. right click your project > new > other...
+15. glassfish > jdbc resource. click next.
+16. use existing jdbc connection: connectionPool
+	- if you do not have a connection, make one that connects to your database
+17. JNDI Name: jdbc/lsed_db
+18. click next, then finish
+
+
