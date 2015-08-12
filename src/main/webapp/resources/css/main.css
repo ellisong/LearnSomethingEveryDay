@@ -1,32 +1,181 @@
-h1 {
-	text-align: center;
-	font-weight: bold;
-    font-size: large;
-}
+/* (-webkit-min-device-pixel-ratio: 2) */
+/* (-webkit-min-device-pixel-ratio: 1.5) */
+
+/* Body */
 
 body {
-	background-color: #FFFFFF;
+    background-color: #FFFFFF;
+    margin: 0;
+    padding: 0;
 }
 
-.card-table {   
-	border-collapse: collapse;
+/* Headings/Text */
+
+h1 {
+    font-weight: bold;
+    font-size: 2.5em;
 }
- 
+
+h2 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
+/* Header */
+
+.logo {
+    display: inline;
+    margin: 2.5%;
+    height: 150px;
+}
+
+.headerButtonContainer {
+    float: right;
+}
+
+.searchBox {
+    margin: 0.25em;
+    padding: 0.5em;
+}
+
+.signupButton {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0.25em;
+    padding: 0.5em;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+.loginButton {
+    display: inline-block;
+    width: auto;
+    height: auto;
+    margin: 0.25em;
+    padding: 0.5em;
+    border: 2px solid black;
+    text-align: center;
+    font-weight: bold;
+    font-size: 2em;
+}
+
+/* Section */
+
+.cardListContainer {
+    display: inline-block;
+    width: 90%;
+    height: auto;
+    margin: 64px 5% 64px;
+    padding: 0;
+    border: 3px solid black;
+}
+
+.cardContainer {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    width: 25%;
+    height: 0;
+    padding-bottom: 25%;
+    border: 2px solid black;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.card {
+    display: block;
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.0em;
+    padding: 10%;
+}
+
+/* Footer */
+
+h3 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 1.0em;
+}
+
+/* Breakpoint 1: Center sign in and login buttons */
+@media only screen and (max-width: 860px) {
+    body {
+        background-color: #66FF66;
+    }
+    
+    h1.logo {
+        display: block;
+        text-align: center;
+    }
+    
+    .headerButtonContainer {
+        float: none;
+        margin: auto;
+        display: table;
+    }
+    
+    .cardContainer {
+        width: 33.3333%;
+        padding-bottom: 33.3333%;
+    }
+}
+
+/* Breakpoint 2: Mobile phones */
+@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
+    body {
+        background-color: #6666FF;
+    }
+    
+    h1.logo {
+        display: block;
+        text-align: center;
+    }
+    
+    .headerButtonContainer {
+        float: none;
+        margin: auto;
+        display: table;
+    }
+    
+    .cardContainer {
+        width: 50%;
+        padding-bottom: 50%;
+    }
+}
+
+/* Example Data Table CSS */
+
+/*.card-table {   
+    border-collapse: collapse;
+}
+
 .card-table-header {
-	text-align: center;
-	background: none repeat scroll 0 0 #C3C3C3;
-	border: 1px solid #000000;
-	padding: 2px;
+    text-align: center;
+    background: none repeat scroll 0 0 #C3C3C3;
+    border: 1px solid #000000;
+    padding: 2px;
 }
  
 .card-table-odd-row {
-	text-align: center;
-	background: none repeat scroll 0 0 #FFFFFF;
+    text-align: center;
+    background: none repeat scroll 0 0 #FFFFFF;
     border: 1px solid #000000;
 }
  
 .card-table-even-row {
-	text-align: center;
-	background: none repeat scroll 0 0 #ECECEC;
+    text-align: center;
+    background: none repeat scroll 0 0 #ECECEC;
     border: 1px solid #000000;
 }
+
+.data_table_embed {
+    display: inline;
+    width: 50%;
+    min-height: 300px;
+}*/

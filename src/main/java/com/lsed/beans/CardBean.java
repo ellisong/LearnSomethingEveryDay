@@ -7,7 +7,7 @@ package com.lsed.beans;
 
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.ViewScoped;
 
 import javax.sql.DataSource;
 import java.sql.Connection;
@@ -27,7 +27,7 @@ import com.lsed.structs.Card;
  * @author Grady Ellison
  */
 @ManagedBean(name = "cardBean", eager = true)
-@RequestScoped
+@ViewScoped
 public class CardBean
 {
 

@@ -9,53 +9,65 @@ and open the template in the editor.
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"      
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components">
+    <f:view locale="#{facesContext.externalContext.requestLocale}" />
     <h:head>
         <h:outputStylesheet name="css/normalize.css" />
         <h:outputStylesheet name="css/main.css" />
-        
         <title>Learn Something Every Day!</title>
     </h:head>
     <h:body>
-        <h1>Card List</h1>
-        <h:dataTable value="#{cardBean.cards}" var="card"
-            styleClass="card-table"
-            headerClass="card-table-header"
-            rowClasses="card-table-odd-row,card-table-even-row">
-
-            <h:column>
-                <f:facet name="header">Title</f:facet>
-                #{card.title}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Description</f:facet>
-                #{card.description}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Date Created</f:facet>
-                #{card.dateCreated}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Date Modified</f:facet>
-                #{card.dateModified}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Image Link</f:facet>
-                #{card.imageLink}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Embed Link</f:facet>
-                #{card.embedLink}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Categories</f:facet>
-                #{card.categories}
-            </h:column>
-            <h:column>
-                <f:facet name="header">Prerequisites</f:facet>
-                #{card.prerequisites}
-            </h:column>
-
-        </h:dataTable>
+        <header>
+            <h:graphicImage class="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
+            <h:panelGroup class="headerButtonContainer">
+                <h:form>
+                    <h:inputText class="searchBox" value="Search" />
+                    <!-- TODO: Not make buttons refresh the page -->
+                    <h:commandButton id="signup" class="signupButton" value="Sign up" action="#{loginDisplayBean.viewSignup}" />
+                    <h:commandButton id="login" class="loginButton" value="Login" action="#{loginDisplayBean.viewLogin}" />
+                </h:form>
+            </h:panelGroup>
+        </header>
+        <section>
+            <h:panelGroup id="loginPanel">
+                <h:panelGroup class="loginContainer" rendered="#{loginDisplayBean.login}">
+                    <h:outputText>Login</h:outputText>
+                    <iframe src="login.xhtml" />
+                </h:panelGroup>
+            </h:panelGroup>
+            <h:panelGroup id="signupPanel">
+                <h:panelGroup class="signupContainer" rendered="#{loginDisplayBean.signup}">
+                    <h:outputText>Sign up</h:outputText>
+                    <iframe src="signup.xhtml" />
+                </h:panelGroup>
+            </h:panelGroup>
+            <h:panelGroup class="cardListContainer">
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+                <h:panelGroup class="cardContainer">
+                    <h:outputText class="card" value="Card Title" />
+                </h:panelGroup>
+            </h:panelGroup>
+        </section>
+        <footer>
+            <h3>&copy; 8-9-2015 by Grady Ellison</h3>
+        </footer>
     </h:body>
 </html>
