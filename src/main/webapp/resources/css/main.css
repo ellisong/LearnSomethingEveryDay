@@ -32,6 +32,8 @@ h2 {
 
 .headerButtonContainer {
     float: right;
+    margin: 2.5%;
+    height: 150px;
 }
 
 .searchBox {
@@ -39,28 +41,33 @@ h2 {
     padding: 0.5em;
 }
 
-.signupButton {
+.headerButton {
     display: inline-block;
-    width: auto;
+    width: 4.5em;
     height: auto;
     margin: 0.25em;
-    padding: 0.5em;
+    padding: 0.25em;
     border: 2px solid black;
     text-align: center;
+    text-decoration: none;
     font-weight: bold;
-    font-size: 2em;
+    font-size: 1.75em;
 }
 
-.loginButton {
-    display: inline-block;
-    width: auto;
-    height: auto;
-    margin: 0.25em;
-    padding: 0.5em;
-    border: 2px solid black;
-    text-align: center;
-    font-weight: bold;
-    font-size: 2em;
+a:link {
+    color: #000000;
+}
+
+a:visited {
+    color: #000000;
+}
+
+a:hover {
+    color: #FF0000;
+}
+
+a:active {
+    color: #FF0000;
 }
 
 /* Section */
@@ -104,22 +111,13 @@ h3 {
 }
 
 /* Breakpoint 1: Center sign in and login buttons */
-@media only screen and (max-width: 860px) {
-    body {
-        background-color: #66FF66;
+@media only screen and (max-width: 750px) {
+    .logo {
+        display: inline;
+        margin: 2.5%;
+        height: 150px;
     }
-    
-    h1.logo {
-        display: block;
-        text-align: center;
-    }
-    
-    .headerButtonContainer {
-        float: none;
-        margin: auto;
-        display: table;
-    }
-    
+
     .cardContainer {
         width: 33.3333%;
         padding-bottom: 33.3333%;
@@ -128,13 +126,10 @@ h3 {
 
 /* Breakpoint 2: Mobile phones */
 @media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-    body {
-        background-color: #6666FF;
-    }
-    
-    h1.logo {
-        display: block;
-        text-align: center;
+    .logo {
+        display: inline;
+        margin: 2.5%;
+        height: 150px;
     }
     
     .headerButtonContainer {

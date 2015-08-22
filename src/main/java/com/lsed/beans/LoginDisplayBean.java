@@ -23,20 +23,20 @@ public class LoginDisplayBean {
         signup = false;
     }
     
-    public boolean isLogin() {
+    public boolean getLogin() {
         return login;
     }
 
-    public boolean isSignup() {
+    public boolean getSignup() {
         return signup;
     }
     
-    public void viewLogin() {
+    public void setLogin() {
         this.login = true;
         this.signup = false;
     }
     
-    public void viewSignup() {
+    public void setSignup() {
         this.login = false;
         this.signup = true;
     }
