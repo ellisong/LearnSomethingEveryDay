@@ -17,16 +17,21 @@ h1 {
 }
 
 h2 {
-    text-align: center;
     font-weight: bold;
+    font-size: 1.0em;
+}
+
+h3 {
+    text-align: center;
+    font-weight: normal;
     font-size: 1.0em;
 }
 
 /* Header */
 
-.logo {
+#logo {
     display: inline;
-    margin: 2.5%;
+    margin: 2.5% 2.5% 0;
     height: 150px;
 }
 
@@ -54,6 +59,40 @@ h2 {
     font-size: 1.75em;
 }
 
+/* Search section */
+
+.searchButtonContainer {
+    display: inline-block;
+    margin: 5% 5% 0;
+}
+
+#viewby {
+    font-weight: bold;
+    font-size: 1.0em;
+}
+
+#listBox {
+    width: 10em;
+    height: auto;
+    margin: 0.25em;
+    font-size: 1.0em;
+}
+
+#latest {
+    float: right;
+    width: 4.5em;
+    height: auto;
+    margin-left: 3em;
+    padding: 0.25em;
+    border: 2px solid black;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.25em;
+}
+
+/* Link coloring */
+
 a:link {
     color: #000000;
 }
@@ -70,7 +109,7 @@ a:active {
     color: #FF0000;
 }
 
-/* Section */
+/* Card Section */
 
 .cardListContainer {
     display: inline-block;
@@ -78,14 +117,14 @@ a:active {
     height: auto;
     margin: 64px 5% 64px;
     padding: 0;
-    border: 3px solid black;
 }
+
 
 .cardContainer {
     display: inline-block;
-    margin: 0;
-    padding: 0;
-    width: 25%;
+    margin: 1.75% 2.5% 1.75%;
+    padding: 2.5%;
+    width: 20%;
     height: 0;
     padding-bottom: 25%;
     border: 2px solid black;
@@ -102,45 +141,48 @@ a:active {
     padding: 10%;
 }
 
-/* Footer */
-
-h3 {
-    text-align: center;
-    font-weight: normal;
-    font-size: 1.0em;
-}
-
-/* Breakpoint 1: Center sign in and login buttons */
-@media only screen and (max-width: 750px) {
-    .logo {
-        display: inline;
-        margin: 2.5%;
-        height: 150px;
-    }
-
+/* Breakpoint 1: Move card rows to 3 */
+@media only screen and (max-width: 600px) {
     .cardContainer {
-        width: 33.3333%;
+        width: 26.664%;
         padding-bottom: 33.3333%;
+        margin: 2.5% 3.33% 2.5%;
     }
 }
 
-/* Breakpoint 2: Mobile phones */
-@media only screen and (max-width: 480px), only screen and (max-device-width: 480px) {
-    .logo {
-        display: inline;
-        margin: 2.5%;
+/* Breakpoint 2: Center logo, header buttons, search buttons, card rows = 2,
+                 Remove space between latest and view by box.                 
+*/
+@media only screen and (max-width: 480px) {
+    #logo {
+        display: block;
+        margin: 2.5% auto 0;
         height: 150px;
     }
     
     .headerButtonContainer {
         float: none;
+        display: inline-block;
         margin: auto;
         display: table;
     }
     
+    .searchButtonContainer {
+        float: none;
+        display: inline-block;
+        margin: auto;
+        display: table;
+    }
+    
+    #latest {
+        float: none;
+        margin-left: 0.25em;
+    }
+    
     .cardContainer {
-        width: 50%;
+        width: 40%;
         padding-bottom: 50%;
+        margin: 3.75% 5% 3.75%;
     }
 }
 
