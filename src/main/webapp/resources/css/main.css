@@ -18,11 +18,15 @@ h1 {
 
 h2 {
     font-weight: bold;
-    font-size: 1.0em;
+    font-size: 1.5em;
 }
 
 h3 {
-    text-align: center;
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
+h4 {
     font-weight: normal;
     font-size: 1.0em;
 }
@@ -38,17 +42,15 @@ h3 {
 .headerButtonContainer {
     float: right;
     margin: 2.5%;
+    padding: auto;
     height: 150px;
-}
-
-.searchBox {
-    margin: 0.25em;
-    padding: 0.5em;
 }
 
 .headerButton {
     display: inline-block;
-    width: 4.5em;
+    min-width: 125px;
+    width: auto;
+    min-height: 55px;
     height: auto;
     margin: 0.25em;
     padding: 0.25em;
@@ -64,6 +66,11 @@ h3 {
 .searchButtonContainer {
     display: inline-block;
     margin: 5% 5% 0;
+}
+
+.searchBox {
+    margin: 0.25em;
+    padding: 0.5em;
 }
 
 #viewby {
@@ -119,7 +126,6 @@ a:active {
     padding: 0;
 }
 
-
 .cardContainer {
     display: inline-block;
     margin: 1.75% 2.5% 1.75%;
@@ -139,6 +145,71 @@ a:active {
     font-weight: normal;
     font-size: 1.0em;
     padding: 10%;
+}
+
+/* Footer */
+
+#aboutContainer {
+    text-align: center;
+}
+
+/* Registration Popups */
+
+.registrationPopup {
+    
+}
+
+#signupColorTable tr, td {
+    border: 1px solid grey;
+    margin: 0;
+    padding: 0;
+}
+
+#signupColorTable tr td input[type=button] {
+    width: 100%;
+    height: 48px;
+}
+
+#signupColorTable tr:nth-of-type(1) td:nth-of-type(1) input[type=button] {
+    background-color: red;
+}
+
+#signupColorTable tr:nth-of-type(1) td:nth-of-type(2) input[type=button] {
+    background-color: blue;
+}
+
+#signupColorTable tr:nth-of-type(1) td:nth-of-type(3) input[type=button] {
+    background-color: green;
+}
+
+#signupColorTable tr:nth-of-type(2) td:nth-of-type(1) input[type=button] {
+    background-color: yellow;
+}
+
+#signupColorTable tr:nth-of-type(2) td:nth-of-type(2) input[type=button] {
+    background-color: pink;
+}
+
+#signupColorTable tr:nth-of-type(2) td:nth-of-type(3) input[type=button] {
+    background-color: purple;
+}
+
+#signupActivityTable tr td input[type=button] {
+    width: 100%;
+    height: 48px;
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
+.loginText {
+    font-weight: normal;
+    font-size: 1.5em;
+}
+
+.successText {
+    font-weight: bold;
+    font-size: 2.0em;
+    color: red;
 }
 
 /* Breakpoint 1: Move card rows to 3 */
