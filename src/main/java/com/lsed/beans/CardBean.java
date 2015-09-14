@@ -5,14 +5,10 @@
  */
 package com.lsed.beans;
 
-import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.CallableStatement;
-import java.sql.Types;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -28,19 +24,15 @@ import com.lsed.structs.Card;
  */
 @ManagedBean(name = "cardBean", eager = true)
 @ViewScoped
-public class CardBean
+public class CardBean extends SqlBeanTemplate
 {
-
-    @Resource(lookup="jdbc/lsed_db")
-    private DataSource ds;
-    private Connection conn;
-    
     private List<Card> cards;
     
      /**
      * Creates a new instance of CardBean
+     * @throws java.sql.SQLException
      */
-    public CardBean()
+    public CardBean() throws SQLException
     {
         cards = null;
     }
@@ -53,7 +45,9 @@ public class CardBean
     public List<Card> getCardInfo_SortBy(String sortParam) throws SQLException
     {
         if (cards == null) {
-            ResultSet rs = queryCardInfo_SortBy(sortParam);
+            CallableStatement stmt = conn.prepareCall("{CALL queryCardInfo_SortBy(?)}");
+            stmt.setString(1, sortParam);
+            ResultSet rs = this.executeStatement(stmt);
             if (rs != null) {
                 cards = new ArrayList<>();
                 while (rs.next()) {
@@ -77,21 +71,4 @@ public class CardBean
     {
         this.cards = cards;
     }
-    
-    private ResultSet queryCardInfo_SortBy(String sortParam) throws SQLException
-    {
-        if (ds == null)
-            throw new SQLException("DataSource is NULL in getCardList()");
-        conn = ds.getConnection();
-        if (conn == null)
-            throw new SQLException("Cannot get connection from data source in getCardList()");
-
-        CallableStatement stmt = conn.prepareCall("{CALL queryCardInfo_SortBy(?)}");
-        stmt.setString(1, sortParam);
-        boolean hadResults = stmt.execute();
-        if (hadResults)
-            return stmt.getResultSet();
-        return null;
-    }
-
 }

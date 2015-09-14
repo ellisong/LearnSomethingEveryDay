@@ -31,6 +31,42 @@ h4 {
     font-size: 1.0em;
 }
 
+.redText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: red;
+}
+
+.blueText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: blue;
+}
+
+.greenText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: green;
+}
+
+.yellowText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: yellow;
+}
+
+.pinkText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: pink;
+}
+
+.purpleText {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: purple;
+}
+
 /* Header */
 
 #logo {
@@ -159,57 +195,47 @@ a:active {
     
 }
 
-#signupColorTable tr, td {
-    border: 1px solid grey;
-    margin: 0;
-    padding: 0;
-}
-
-#signupColorTable tr td input[type=button] {
-    width: 100%;
-    height: 48px;
-}
-
-#signupColorTable tr:nth-of-type(1) td:nth-of-type(1) input[type=button] {
-    background-color: red;
-}
-
-#signupColorTable tr:nth-of-type(1) td:nth-of-type(2) input[type=button] {
-    background-color: blue;
-}
-
-#signupColorTable tr:nth-of-type(1) td:nth-of-type(3) input[type=button] {
-    background-color: green;
-}
-
-#signupColorTable tr:nth-of-type(2) td:nth-of-type(1) input[type=button] {
-    background-color: yellow;
-}
-
-#signupColorTable tr:nth-of-type(2) td:nth-of-type(2) input[type=button] {
-    background-color: pink;
-}
-
-#signupColorTable tr:nth-of-type(2) td:nth-of-type(3) input[type=button] {
-    background-color: purple;
-}
-
-#signupActivityTable tr td input[type=button] {
-    width: 100%;
-    height: 48px;
-    font-weight: normal;
-    font-size: 1.5em;
-}
-
-.loginText {
-    font-weight: normal;
-    font-size: 1.5em;
-}
-
 .successText {
     font-weight: bold;
     font-size: 2.0em;
     color: red;
+}
+
+/* Signup */
+
+.signupColorLabel input {
+    visibility: hidden;
+    position: absolute;
+}
+
+.signupColorLabel input + label {
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.signupColorLabel input:checked + label {
+    border: 2px solid red;
+}
+
+.signupActivityLabel input {
+    visibility: hidden;
+    position: absolute;
+}
+
+.signupActivityLabel input + img {
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.signupActivityLabel input:checked + img {
+    border: 2px solid red;
+}
+
+/* Login */
+
+.loginText {
+    font-weight: normal;
+    font-size: 1.5em;
 }
 
 /* Breakpoint 1: Move card rows to 3 */

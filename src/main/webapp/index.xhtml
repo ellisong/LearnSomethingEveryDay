@@ -55,39 +55,64 @@ and open the template in the editor.
                     <br/><br/>
                     <h:outputText styleClass="loginText" value="Select one:" />
                     <br/>
-                    <table id="signupColorTable" width="90%">
-                        <tr>
-                            <td><h:commandButton type="button" id="signupRed"/></td>
-                            <td><h:commandButton type="button" id="signupBlue"/></td>
-                            <td><h:commandButton type="button" id="signupGreen"/></td>
-                        </tr>
-                        <tr>
-                            <td><h:commandButton type="button" id="signupYellow"/></td>
-                            <td><h:commandButton type="button" id="signupPink"/></td>
-                            <td><h:commandButton type="button" id="signupPurple"/></td>
-                        </tr>
-                    </table>
-                    <br/>
+                    <label class="signupColorLabel">
+                        <input type="radio" id="signupRed" name="signupColor" value="red" />
+                        <label class="redText" for="signupRed">Red</label>
+                    </label>
+                    <label class="signupColorLabel">
+                        <input type="radio" id="signupBlue" name="signupColor" value="blue" />
+                        <label class="blueText" for="signupBlue">Blue</label>
+                    </label>
+                    <label class="signupColorLabel">
+                        <input type="radio" id="signupGreen" name="signupColor" value="green" />
+                        <label class="greenText" for="signupGreen">Green</label>
+                    </label>
+                    <label class="signupColorLabel">
+                        <input type="radio" id="signupYellow" name="signupColor" value="yellow" />
+                        <label class="yellowText" for="signupYellow">Yellow</label>
+                    </label>
+                    <label class="signupColorLabel">
+                        <input type="radio" id="signupPink" name="signupColor" value="pink" />
+                        <label class="pinkText" for="signupPink">Pink</label>
+                    </label>
+                    <label class="signupColorLabel">
+                        <input type="radio" id="signupPurple" name="signupColor" value="purple" />
+                        <label class="purpleText" for="signupPurple">Purple</label>
+                    </label>
+                    <br/><br/>
                     <h:outputText styleClass="loginText" value="Pick your favorite activity:" />
                     <br/>
-                    <table id="signupActivityTable" width="90%">
-                        <tr>
-                            <td><h:commandButton type="button" id="signupBike" image="" value="Bike"/></td>
-                            <td><h:commandButton type="button" id="signupSwim" value="Swim"/></td>
-                            <td><h:commandButton type="button" id="signupBall" value="Ball"/></td>
-                        </tr>
-                        <tr>
-                            <td><h:commandButton type="button" id="signupPark" value="Park"/></td>
-                            <td><h:commandButton type="button" id="signupRun" value="Run"/></td>
-                            <td><h:commandButton type="button" id="signupBook" value="Book"/></td>
-                        </tr>
-                    </table>     
+                    <label class="signupActivityLabel">
+                        <input type="radio" name="signupActivity" value="bike" />
+                        <img src="#{resource['/img/bike.png']}"/>
+                    </label>
+                    <label class="signupActivityLabel">
+                        <input type="radio" name="signupActivity" value="swim" />
+                        <img src="#{resource['/img/swim.png']}"/>
+                    </label>
+                    <label class="signupActivityLabel">
+                        <input type="radio" name="signupActivity" value="sport" />
+                        <img src="#{resource['/img/sport.png']}"/>
+                    </label>
+                    <br/>
+                    <label class="signupActivityLabel">
+                        <input type="radio" name="signupActivity" value="park" />
+                        <img src="#{resource['/img/park.png']}"/>
+                    </label>
+                    <label class="signupActivityLabel">
+                        <input type="radio" name="signupActivity" value="run" />
+                        <img src="#{resource['/img/run.png']}"/>
+                    </label>
+                    <label class="signupActivityLabel">
+                        <input type="radio" name="signupActivity" value="book" />
+                        <img src="#{resource['/img/book.png']}"/>
+                    </label>
                     <br/><br/>
                     <h:commandButton id="signupOk" value="OK" type="submit" onclick="" />
-                    <h:button id="signupCancel" value="Cancel" onclick="#{rich:component('signupPopup')}.hide()" />
                     <br/><br/>
-                    <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" />
+                    <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
                 </h:form>
+                <h:button id="signupCancel" value="Cancel" onclick="#{rich:component('signupPopup')}.hide()" />
             </rich:popupPanel>
             <rich:popupPanel id="loginPopup" styleClass="registrationPopup" moveable="true" minWidth="340" autosized="true" resizeable="false" modal="false">
                 <f:facet name="header">
@@ -104,8 +129,8 @@ and open the template in the editor.
                     <h:inputSecret id="loginPassword"/>
                     <br/>
                     <h:commandButton id="loginOk" value="OK" type="submit" onclick="" />
-                    <h:button id="loginCancel" value="Cancel" onclick="#{rich:component('loginPopup')}.hide()" />
                 </h:form>
+                <h:button id="loginCancel" value="Cancel" onclick="#{rich:component('loginPopup')}.hide()" />
                 <br/>
                 <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
             </rich:popupPanel>
@@ -154,7 +179,7 @@ and open the template in the editor.
         </section>
         <footer>
             <h:panelGroup id="aboutContainer">
-                <h4>&copy; 8-9-2015 by Grady Ellison</h4>
+                <h4>&copy; #{dateBean.date} by Grady Ellison, Max Brebner</h4>
             </h:panelGroup>
         </footer>
     </h:body>
