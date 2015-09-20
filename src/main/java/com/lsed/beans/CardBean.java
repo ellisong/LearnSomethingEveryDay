@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 import com.lsed.structs.Card;
+import java.sql.Connection;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 
 /**
@@ -24,8 +27,12 @@ import com.lsed.structs.Card;
  */
 @ManagedBean(name = "cardBean", eager = true)
 @ViewScoped
-public class CardBean extends SqlBeanTemplate
+public class CardBean
 {
+    @Resource(lookup="jdbc/lsed_db")
+    protected DataSource ds;
+    protected Connection conn;
+    
     private List<Card> cards;
     
      /**
@@ -44,23 +51,31 @@ public class CardBean extends SqlBeanTemplate
 
     public List<Card> getCardInfo_SortBy(String sortParam) throws SQLException
     {
+        if (ds == null)
+            throw new SQLException("DataSource is NULL in SqlBeanTemplate()");
+        conn = ds.getConnection();
+        if (conn == null)
+            throw new SQLException("Cannot get connection from data source in getCardInfo_SortBy()");
+        
         if (cards == null) {
             CallableStatement stmt = conn.prepareCall("{CALL queryCardInfo_SortBy(?)}");
             stmt.setString(1, sortParam);
-            ResultSet rs = this.executeStatement(stmt);
-            if (rs != null) {
-                cards = new ArrayList<>();
-                while (rs.next()) {
-                    Card card = new Card();
+            if (stmt.execute()) {
+                ResultSet rs = stmt.getResultSet();
+                if (rs != null) {
+                    cards = new ArrayList<>();
+                    while (rs.next()) {
+                        Card card = new Card();
 
-                    card.setTitle(rs.getString("Title"));
-                    card.setDescription(rs.getString("Description"));
-                    card.setDateCreated(rs.getDate("DateCreated"));
-                    card.setDateModified(rs.getDate("DateModified"));
-                    card.setImageLink(rs.getString("ImageLink"));
-                    card.setEmbedLink(rs.getString("EmbedLink"));
+                        card.setTitle(rs.getString("Title"));
+                        card.setDescription(rs.getString("Description"));
+                        card.setDateCreated(rs.getDate("DateCreated"));
+                        card.setDateModified(rs.getDate("DateModified"));
+                        card.setImageLink(rs.getString("ImageLink"));
+                        card.setEmbedLink(rs.getString("EmbedLink"));
 
-                    cards.add(card);
+                        cards.add(card);
+                    }
                 }
             }
         }

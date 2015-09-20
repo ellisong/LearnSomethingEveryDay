@@ -5,14 +5,13 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:comp="http://java.sun.com/jsf/composite/components"
-      xmlns:rich="http://richfaces.org/rich"
-      xmlns:a4j="http://richfaces.org/a4j">
+      xmlns:p="http://primefaces.org/ui">
     <f:view locale="#{facesContext.externalContext.requestLocale}" />
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1"/>
@@ -25,126 +24,97 @@ and open the template in the editor.
             <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
             <h:panelGroup styleClass="headerButtonContainer">
                 <!-- TODO: Not make buttons refresh the page -->
-                <h:commandButton id="signupButton" styleClass="headerButton" value="Sign up" onclick="#{rich:component('signupPopup')}.show();#{rich:component('loginPopup')}.hide();"/>
+                <h:commandButton id="signupButton" styleClass="headerButton" type="button" value="Sign up" onclick="PF('signupDlg').show();
+                        PF('loginDlg').hide();" />
                 <br/>
-                <h:commandButton id="loginButton" styleClass="headerButton" value="Login" onclick="#{rich:component('loginPopup')}.show();#{rich:component('signupPopup')}.hide();"/>
+                <h:commandButton id="loginButton" styleClass="headerButton" type="button" value="Login" onclick="PF('signupDlg').hide();
+                        PF('loginDlg').show();" />
             </h:panelGroup>
         </header>
-        <section>
-            <rich:popupPanel id="signupPopup" styleClass="registrationPopup" moveable="true" autosized="true" resizeable="false" modal="false">
-                <f:facet name="header">
-                    <h:outputText value="Signup Panel" />
-                </f:facet>
-                <f:facet name="controls">
-                    <h:graphicImage value="#{resource['/img/close.png']}" style="cursor:pointer" onclick="#{rich:component('signupPopup')}.hide()" />
-                </f:facet>
-                <h:form id="signupForm">
-                    <h:outputText styleClass="loginText" value="Enter a user name: "/>
-                    <h:inputText id="signupUsername"/>
-                    <br/>
-                    <h:outputText styleClass="loginText" value="Enter a password: "/>
-                    <h:inputSecret id="signupPassword"/>
-                    <br/>
-                    <h:outputText styleClass="loginText" value="Re-enter password: "/>
-                    <h:inputSecret id="signupReenterPassword"/>
-                    <br/>
-                    <h:outputText styleClass="loginText" value="Enter full name: "/>
-                    <h:inputText id="signupFullName"/>
-                    <br/>
-                    <h:outputText value="(This is to help us get you back in if you forget your password.)"/>
-                    <br/><br/>
-                    <h:outputText styleClass="loginText" value="Select one:" />
-                    <br/>
-                    <label class="signupColorLabel">
-                        <input type="radio" id="signupRed" name="signupColor" value="red" />
-                        <label class="redText" for="signupRed">Red</label>
-                    </label>
-                    <label class="signupColorLabel">
-                        <input type="radio" id="signupBlue" name="signupColor" value="blue" />
-                        <label class="blueText" for="signupBlue">Blue</label>
-                    </label>
-                    <label class="signupColorLabel">
-                        <input type="radio" id="signupGreen" name="signupColor" value="green" />
-                        <label class="greenText" for="signupGreen">Green</label>
-                    </label>
-                    <label class="signupColorLabel">
-                        <input type="radio" id="signupYellow" name="signupColor" value="yellow" />
-                        <label class="yellowText" for="signupYellow">Yellow</label>
-                    </label>
-                    <label class="signupColorLabel">
-                        <input type="radio" id="signupPink" name="signupColor" value="pink" />
-                        <label class="pinkText" for="signupPink">Pink</label>
-                    </label>
-                    <label class="signupColorLabel">
-                        <input type="radio" id="signupPurple" name="signupColor" value="purple" />
-                        <label class="purpleText" for="signupPurple">Purple</label>
-                    </label>
-                    <br/><br/>
-                    <h:outputText styleClass="loginText" value="Pick your favorite activity:" />
-                    <br/>
-                    <label class="signupActivityLabel">
-                        <input type="radio" name="signupActivity" value="bike" />
-                        <img src="#{resource['/img/bike.png']}"/>
-                    </label>
-                    <label class="signupActivityLabel">
-                        <input type="radio" name="signupActivity" value="swim" />
-                        <img src="#{resource['/img/swim.png']}"/>
-                    </label>
-                    <label class="signupActivityLabel">
-                        <input type="radio" name="signupActivity" value="sport" />
-                        <img src="#{resource['/img/sport.png']}"/>
-                    </label>
-                    <br/>
-                    <label class="signupActivityLabel">
-                        <input type="radio" name="signupActivity" value="park" />
-                        <img src="#{resource['/img/park.png']}"/>
-                    </label>
-                    <label class="signupActivityLabel">
-                        <input type="radio" name="signupActivity" value="run" />
-                        <img src="#{resource['/img/run.png']}"/>
-                    </label>
-                    <label class="signupActivityLabel">
-                        <input type="radio" name="signupActivity" value="book" />
-                        <img src="#{resource['/img/book.png']}"/>
-                    </label>
-                    <br/><br/>
-                    <h:commandButton id="signupOk" value="OK" type="submit" onclick="" />
-                    <br/><br/>
-                    <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
-                </h:form>
-                <h:button id="signupCancel" value="Cancel" onclick="#{rich:component('signupPopup')}.hide()" />
-            </rich:popupPanel>
-            <rich:popupPanel id="loginPopup" styleClass="registrationPopup" moveable="true" minWidth="340" autosized="true" resizeable="false" modal="false">
-                <f:facet name="header">
-                    <h:outputText value="Login Panel" />
-                </f:facet>
-                <f:facet name="controls">
-                    <h:graphicImage value="#{resource['/img/close.png']}" style="cursor:pointer" onclick="#{rich:component('loginPopup')}.hide()" />
-                </f:facet>
-                <h:form id="loginForm">
-                    <h:outputText styleClass="loginText" value="Enter your user name: "/>
-                    <h:inputText id="loginUsername"/>
-                    <br/>
-                    <h:outputText styleClass="loginText" value="Enter your password: "/>
-                    <h:inputSecret id="loginPassword"/>
-                    <br/>
-                    <h:commandButton id="loginOk" value="OK" type="submit" onclick="" />
-                </h:form>
-                <h:button id="loginCancel" value="Cancel" onclick="#{rich:component('loginPopup')}.hide()" />
+        <p:dialog id="signupPopup" header="Signup" styleClass="registrationPopup" modal="true" widgetVar="signupDlg">
+            <h:form id="signupForm">
+                <h:outputText styleClass="loginText" value="Enter a user name: " />
+                <h:inputText id="signupUsername" value="#{userBean.username}" required="true" requiredMessage="Please enter a username">
+                    <f:validateLength minimum="1" maximum="32" />
+                </h:inputText>
+                <br/><h:message for="signupUsername" style="color:red" /><br/>
+                <h:outputText styleClass="loginText" value="Enter a password: " />
+                <h:inputSecret id="signupPassword" value="#{userBean.password}" required="true" requiredMessage="Please enter a password">
+                    <f:attribute name="signupConfirmPassword" value="#{signupConfirmPassword}" />
+                    <f:validator validatorId="com.lsed.validators.SignupPasswordValidator" />
+                </h:inputSecret>
+                <br/><h:message for="signupPassword" style="color:red" /><br/>
+                <h:outputText styleClass="loginText" value="Re-enter password: " />
+                <h:inputSecret id="signupConfirmPassword" binding="#{signupConfirmPassword}" />
+                <br/><br/>
+                <h:outputText styleClass="loginText" value="Enter full name: " />
+                <h:inputText id="signupFullName" value="#{userBean.fullName}"  required="true" requiredMessage="Please enter your full name">
+                    <f:validateLength minimum="1" maximum="48" />
+                </h:inputText>
+                <br/><h:message for="signupFullName" style="color:red" /><br/>
+                <h:outputText value="(This is to help us get you back in if you forget your password.)" />
+                <br/><br/>
+                <h:outputText styleClass="loginText" value="Pick your favorite color:" />
                 <br/>
-                <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
-            </rich:popupPanel>
-            <rich:popupPanel id="recoveryPopup" styleClass="registrationPopup" moveable="true" autosized="true" resizeable="false" modal="false">
-                <f:facet name="header">
-                    <h:outputText value="Recovery Panel" />
-                </f:facet>
-                <f:facet name="controls">
-                    <h:graphicImage value="#{resource['/img/close.png']}" style="cursor:pointer" onclick="#{rich:component('recoveryPopup')}.hide()" />
-                </f:facet>
-                <a href="#" onclick="#{rich:component('recoveryPopup')}.hide()"><h2>Click here to close this panel</h2></a>
-                <h3>Sign up</h3>
-            </rich:popupPanel>
-        </section>
+                <h:selectOneRadio id="signupColor" styleClass="signupColorRadio" value="#{userBean.favoriteColor}" required="true" requiredMessage="Please select your favorite color">
+                    <f:selectItem itemValue="red" itemLabel="Red" />
+                    <f:selectItem itemValue="blue" itemLabel="Blue" />
+                    <f:selectItem itemValue="green" itemLabel="Green" />
+                    <f:selectItem itemValue="yellow" itemLabel="Yellow" />
+                    <f:selectItem itemValue="pink" itemLabel="Pink" />
+                    <f:selectItem itemValue="purple" itemLabel="Purple" />
+                </h:selectOneRadio>
+                <br/><h:message for="signupColor" style="color:red" /><br/><br/>
+                <h:outputText styleClass="loginText" value="Pick your favorite activity:" />
+                <br/>
+                <p:selectOneRadio id="signupActivity" value="#{userBean.favoriteActivity}" required="true" requiredMessage="Please select your favorite activity">
+                    <f:selectItem itemValue="bike" itemLabel="Bike" />
+                    <f:selectItem itemValue="swim" itemLabel="Swim" />
+                    <f:selectItem itemValue="sport" itemLabel="Sport" />
+                    <f:selectItem itemValue="park" itemLabel="Park" />
+                    <f:selectItem itemValue="run" itemLabel="Run" />
+                    <f:selectItem itemValue="book" itemLabel="Book" />
+                </p:selectOneRadio>
+                <!--
+                <p:radioButton id="signupBike" for="signupActivity" itemIndex="0"/>
+                <h:graphicImage url="#{resource['/img/bike.png']}"/>
+                <p:radioButton id="signupSwim" for="signupActivity" itemIndex="1"/>
+                <h:graphicImage url="#{resource['/img/swim.png']}"/>
+                <p:radioButton id="signupSport" for="signupActivity" itemIndex="2"/>
+                <h:graphicImage url="#{resource['/img/sport.png']}"/>
+                <br/>
+                <p:radioButton id="signupPark" for="signupActivity" itemIndex="3"/>
+                <h:graphicImage url="#{resource['/img/park.png']}"/>
+                <p:radioButton id="signupRun" for="signupActivity" itemIndex="4"/>
+                <h:graphicImage url="#{resource['/img/run.png']}"/>
+                <p:radioButton id="signupBook" for="signupActivity" itemIndex="5"/>
+                <h:graphicImage url="#{resource['/img/book.png']}"/>
+                -->
+
+                <br/><h:message for="signupActivity" style="color:red" /><br/><br/>
+                <h:commandButton id="signupOk" value="OK" action="#{userBean.submit()}" />
+                <br/><br/>
+                <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
+            </h:form>
+            <!-- <h:button id="signupCancel" value="Cancel" onclick="" /> -->
+        </p:dialog>
+        <p:dialog id="loginPopup" header="Login" styleClass="registrationPopup" modal="true" widgetVar="loginDlg">
+            <h:form id="loginForm">
+                <h:outputText styleClass="loginText" value="Enter your user name: "/>
+                <h:inputText id="loginUsername"/>
+                <br/>
+                <h:outputText styleClass="loginText" value="Enter your password: "/>
+                <h:inputSecret id="loginPassword"/>
+                <br/>
+                <h:commandButton id="loginOk" value="OK" />
+            </h:form>
+            <!-- <h:button id="loginCancel" value="Cancel" onclick="" /> -->
+            <br/>
+            <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
+        </p:dialog>
+        <!-- <p:overlayPanel id="recoveryPopup" styleClass="registrationPopup">
+            <h3>Sign up</h3>
+        </p:overlayPanel> -->
         <section>
             <h:panelGroup styleClass="searchButtonContainer">
                 <h:outputText id="viewby" value="View By:" /> 
@@ -182,5 +152,6 @@ and open the template in the editor.
                 <h4>&copy; #{dateBean.date} by Grady Ellison, Max Brebner</h4>
             </h:panelGroup>
         </footer>
+        <br />
     </h:body>
 </html>

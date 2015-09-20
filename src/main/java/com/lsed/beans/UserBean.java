@@ -5,21 +5,18 @@
  */
 package com.lsed.beans;
 
-import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 
-import javax.sql.DataSource;
-import java.sql.Connection;
 import java.sql.CallableStatement;
-import java.sql.Types;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import java.util.List;
-import java.util.ArrayList;
 
 import com.lsed.structs.User;
+import java.sql.Connection;
+import javax.annotation.Resource;
+import javax.sql.DataSource;
 
 
 /**
@@ -28,11 +25,19 @@ import com.lsed.structs.User;
  */
 @ManagedBean(name = "userBean", eager = true)
 @ViewScoped
-public class UserBean extends SqlBeanTemplate
+public class UserBean
 {
+    @Resource(lookup="jdbc/lsed_db")
+    protected DataSource ds;
+    protected Connection conn;
+    
     private List<User> users;
     
-    public User userInput;
+    public String username;
+    public String password;
+    public String fullName;
+    public String favoriteColor;
+    public String favoriteActivity;
     
      /**
      * Creates a new instance of UserBean
@@ -49,47 +54,66 @@ public class UserBean extends SqlBeanTemplate
         return users;
     }
     
-    public void insertUserInfo(String username, String email, String passw, 
-                               String fullName, String favoriteColor, 
-                               String favoriteActivity) throws SQLException
-    {
-        CallableStatement stmt = conn.prepareCall("{CALL insertUserInfo(?, ?, ?, ?, ?, ?)}");
-        stmt.setString(1, username);
-        stmt.setString(2, email);
-        stmt.setString(3, passw);
-        stmt.setString(4, fullName);
-        stmt.setString(5, favoriteColor);
-        stmt.setString(6, favoriteActivity);
-        this.executeStatement(stmt);
-    }
-
-//    public List<User> getCardInfo_SortBy(String sortParam) throws SQLException
-//    {
-//        if (users == null) {
-//            CallableStatement stmt = conn.prepareCall("{CALL queryCardInfo_SortBy(?)}");
-//            stmt.setString(1, sortParam);
-//            ResultSet rs = this.executeStatement(stmt);
-//            if (rs != null) {
-//                users = new ArrayList<>();
-//                while (rs.next()) {
-//                    User card = new User();
-//
-//                    card.setTitle(rs.getString("Title"));
-//                    card.setDescription(rs.getString("Description"));
-//                    card.setDateCreated(rs.getDate("DateCreated"));
-//                    card.setDateModified(rs.getDate("DateModified"));
-//                    card.setImageLink(rs.getString("ImageLink"));
-//                    card.setEmbedLink(rs.getString("EmbedLink"));
-//
-//                    users.add(card);
-//                }
-//            }
-//        }
-//        return users;
-//    }
-
     public void setUsers(List<User> users)
     {
         this.users = users;
+    }
+    
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+    
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getFavoriteColor() {
+        return favoriteColor;
+    }
+
+    public void setFavoriteColor(String favoriteColor) {
+        this.favoriteColor = favoriteColor;
+    }
+
+    public String getFavoriteActivity() {
+        return favoriteActivity;
+    }
+
+    public void setFavoriteActivity(String favoriteActivity) {
+        this.favoriteActivity = favoriteActivity;
+    }
+    
+    public String submit() throws SQLException
+    {
+        if (ds == null)
+            throw new SQLException("DataSource is NULL in SqlBeanTemplate()");
+        conn = ds.getConnection();
+        if (conn == null)
+            throw new SQLException("Cannot get connection from data source in submit()");
+        
+        CallableStatement stmt = conn.prepareCall("{CALL insertUserInfo(?, ?, ?, ?, ?)}");
+        stmt.setString(1, username);
+        stmt.setString(2, password);
+        stmt.setString(3, fullName);
+        stmt.setString(4, favoriteColor);
+        stmt.setString(5, favoriteActivity);
+        stmt.execute();
+        return "success";
     }
 }

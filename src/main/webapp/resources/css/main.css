@@ -31,42 +31,6 @@ h4 {
     font-size: 1.0em;
 }
 
-.redText {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: red;
-}
-
-.blueText {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: blue;
-}
-
-.greenText {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: green;
-}
-
-.yellowText {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: yellow;
-}
-
-.pinkText {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: pink;
-}
-
-.purpleText {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: purple;
-}
-
 /* Header */
 
 #logo {
@@ -203,31 +167,67 @@ a:active {
 
 /* Signup */
 
-.signupColorLabel input {
+.signupColorRadio input {
     visibility: hidden;
     position: absolute;
 }
 
-.signupColorLabel input + label {
+.signupColorRadio input + label {
     cursor: pointer;
     border: 2px solid transparent;
 }
 
-.signupColorLabel input:checked + label {
+.signupColorRadio input:checked + label {
     border: 2px solid red;
 }
 
-.signupActivityLabel input {
+.signupColorRadio td:nth-of-type(1) input + label {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: red;
+}
+
+.signupColorRadio td:nth-of-type(2) input + label {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: blue;
+}
+
+.signupColorRadio td:nth-of-type(3) input + label {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: green;
+}
+
+.signupColorRadio td:nth-of-type(4) input + label {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: yellow;
+}
+
+.signupColorRadio td:nth-of-type(5) input + label {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: pink;
+}
+
+.signupColorRadio td:nth-of-type(6) input + label {
+    font-weight: bold;
+    font-size: 1.5em;
+    color: purple;
+}
+
+.signupActivityGrid input {
     visibility: hidden;
     position: absolute;
 }
 
-.signupActivityLabel input + img {
+.signupActivityGrid img {
     cursor: pointer;
     border: 2px solid transparent;
 }
 
-.signupActivityLabel input:checked + img {
+.signupActivityGrid input:checked + img {
     border: 2px solid red;
 }
 
