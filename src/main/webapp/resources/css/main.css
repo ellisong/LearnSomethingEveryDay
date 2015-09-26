@@ -7,6 +7,8 @@ body {
     background-color: #FFFFFF;
     margin: 0;
     padding: 0;
+    font-size: 1.0em;
+    font-weight: normal;
 }
 
 /* Headings/Text */
@@ -167,67 +169,44 @@ a:active {
 
 /* Signup */
 
-.signupColorRadio input {
+.ui-scrollpanel {
+    border: 0;
+    padding: 8px 0;
+}
+
+.signupColorLabel {
+    display: inline-block;
+}
+
+.signupColorLabel input {
     visibility: hidden;
     position: absolute;
 }
 
-.signupColorRadio input + label {
+.signupColorLabel img {
     cursor: pointer;
     border: 2px solid transparent;
 }
 
-.signupColorRadio input:checked + label {
+.signupColorLabel input:checked + img {
     border: 2px solid red;
 }
 
-.signupColorRadio td:nth-of-type(1) input + label {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: red;
+.signupActivityLabel {
+    display: inline-block;
 }
 
-.signupColorRadio td:nth-of-type(2) input + label {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: blue;
-}
-
-.signupColorRadio td:nth-of-type(3) input + label {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: green;
-}
-
-.signupColorRadio td:nth-of-type(4) input + label {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: yellow;
-}
-
-.signupColorRadio td:nth-of-type(5) input + label {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: pink;
-}
-
-.signupColorRadio td:nth-of-type(6) input + label {
-    font-weight: bold;
-    font-size: 1.5em;
-    color: purple;
-}
-
-.signupActivityGrid input {
+.signupActivityLabel input {
     visibility: hidden;
     position: absolute;
 }
 
-.signupActivityGrid img {
+.signupActivityLabel img {
     cursor: pointer;
     border: 2px solid transparent;
 }
 
-.signupActivityGrid input:checked + img {
+.signupActivityLabel input:checked + img {
     border: 2px solid red;
 }
 
@@ -235,7 +214,49 @@ a:active {
 
 .loginText {
     font-weight: normal;
-    font-size: 1.5em;
+    font-size: 1.0em;
+}
+
+/* Card Editor */
+
+#editor {
+    max-height: 250px;
+    height: 250px;
+    background-color: white;
+    border-collapse: separate; 
+    border: 1px solid rgb(204, 204, 204); 
+    padding: 4px; 
+    box-sizing: content-box; 
+    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
+    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
+    border-top-right-radius: 3px; border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px; border-top-left-radius: 3px;
+    overflow: scroll;
+    outline: none;
+}
+
+#voiceBtn {
+    width: 20px;
+    color: transparent;
+    background-color: transparent;
+    transform: scale(2.0, 2.0);
+    -webkit-transform: scale(2.0, 2.0);
+    -moz-transform: scale(2.0, 2.0);
+    border: transparent;
+    cursor: pointer;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+div[data-role="editor-toolbar"] {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.dropdown-menu a {
+    cursor: pointer;
 }
 
 /* Breakpoint 1: Move card rows to 3 */

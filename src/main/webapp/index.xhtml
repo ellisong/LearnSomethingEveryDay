@@ -14,9 +14,18 @@ and open the template in the editor.
       xmlns:p="http://primefaces.org/ui">
     <f:view locale="#{facesContext.externalContext.requestLocale}" />
     <h:head>
-        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
         <h:outputStylesheet name="css/normalize.css" />
+        <h:outputStylesheet name="js/external/google-code-prettify/prettify.css" />
+        <h:outputStylesheet name="css/bootstrap-combined.no-icons.min.css" />
+        <h:outputStylesheet name="css/bootstrap-responsive.min.css" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
         <h:outputStylesheet name="css/main.css" />
+        <script src="/LearnSomethingEveryDay/resources/js/external/jquery.hotkeys.js"></script>
+        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+        <script src="/LearnSomethingEveryDay/resources/js/external/google-code-prettify/prettify.js"></script>
+        <script src="/LearnSomethingEveryDay/resources/js/bootstrap-wysiwyg.js"></script>
+        
         <title>Learn Something Every Day!</title>
     </h:head>
     <h:body>
@@ -24,97 +33,77 @@ and open the template in the editor.
             <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
             <h:panelGroup styleClass="headerButtonContainer">
                 <!-- TODO: Not make buttons refresh the page -->
-                <h:commandButton id="signupButton" styleClass="headerButton" type="button" value="Sign up" onclick="PF('signupDlg').show();
-                        PF('loginDlg').hide();" />
+                <h:commandButton id="signupButton" styleClass="headerButton" type="button" value="Sign up" onclick="PF('signupDlg').show(); PF('loginDlg').hide();" />
                 <br/>
-                <h:commandButton id="loginButton" styleClass="headerButton" type="button" value="Login" onclick="PF('signupDlg').hide();
-                        PF('loginDlg').show();" />
+                <h:commandButton id="loginButton" styleClass="headerButton" type="button" value="Login" onclick="PF('signupDlg').hide(); PF('loginDlg').show();" />
             </h:panelGroup>
         </header>
-        <p:dialog id="signupPopup" header="Signup" styleClass="registrationPopup" modal="true" widgetVar="signupDlg">
-            <h:form id="signupForm">
-                <h:outputText styleClass="loginText" value="Enter a user name: " />
-                <h:inputText id="signupUsername" value="#{userBean.username}" required="true" requiredMessage="Please enter a username">
-                    <f:validateLength minimum="1" maximum="32" />
-                </h:inputText>
-                <br/><h:message for="signupUsername" style="color:red" /><br/>
-                <h:outputText styleClass="loginText" value="Enter a password: " />
-                <h:inputSecret id="signupPassword" value="#{userBean.password}" required="true" requiredMessage="Please enter a password">
-                    <f:attribute name="signupConfirmPassword" value="#{signupConfirmPassword}" />
-                    <f:validator validatorId="com.lsed.validators.SignupPasswordValidator" />
-                </h:inputSecret>
-                <br/><h:message for="signupPassword" style="color:red" /><br/>
-                <h:outputText styleClass="loginText" value="Re-enter password: " />
-                <h:inputSecret id="signupConfirmPassword" binding="#{signupConfirmPassword}" />
-                <br/><br/>
-                <h:outputText styleClass="loginText" value="Enter full name: " />
-                <h:inputText id="signupFullName" value="#{userBean.fullName}"  required="true" requiredMessage="Please enter your full name">
-                    <f:validateLength minimum="1" maximum="48" />
-                </h:inputText>
-                <br/><h:message for="signupFullName" style="color:red" /><br/>
-                <h:outputText value="(This is to help us get you back in if you forget your password.)" />
-                <br/><br/>
-                <h:outputText styleClass="loginText" value="Pick your favorite color:" />
-                <br/>
-                <h:selectOneRadio id="signupColor" styleClass="signupColorRadio" value="#{userBean.favoriteColor}" required="true" requiredMessage="Please select your favorite color">
-                    <f:selectItem itemValue="red" itemLabel="Red" />
-                    <f:selectItem itemValue="blue" itemLabel="Blue" />
-                    <f:selectItem itemValue="green" itemLabel="Green" />
-                    <f:selectItem itemValue="yellow" itemLabel="Yellow" />
-                    <f:selectItem itemValue="pink" itemLabel="Pink" />
-                    <f:selectItem itemValue="purple" itemLabel="Purple" />
-                </h:selectOneRadio>
-                <br/><h:message for="signupColor" style="color:red" /><br/><br/>
-                <h:outputText styleClass="loginText" value="Pick your favorite activity:" />
-                <br/>
-                <p:selectOneRadio id="signupActivity" value="#{userBean.favoriteActivity}" required="true" requiredMessage="Please select your favorite activity">
-                    <f:selectItem itemValue="bike" itemLabel="Bike" />
-                    <f:selectItem itemValue="swim" itemLabel="Swim" />
-                    <f:selectItem itemValue="sport" itemLabel="Sport" />
-                    <f:selectItem itemValue="park" itemLabel="Park" />
-                    <f:selectItem itemValue="run" itemLabel="Run" />
-                    <f:selectItem itemValue="book" itemLabel="Book" />
-                </p:selectOneRadio>
-                <!--
-                <p:radioButton id="signupBike" for="signupActivity" itemIndex="0"/>
-                <h:graphicImage url="#{resource['/img/bike.png']}"/>
-                <p:radioButton id="signupSwim" for="signupActivity" itemIndex="1"/>
-                <h:graphicImage url="#{resource['/img/swim.png']}"/>
-                <p:radioButton id="signupSport" for="signupActivity" itemIndex="2"/>
-                <h:graphicImage url="#{resource['/img/sport.png']}"/>
-                <br/>
-                <p:radioButton id="signupPark" for="signupActivity" itemIndex="3"/>
-                <h:graphicImage url="#{resource['/img/park.png']}"/>
-                <p:radioButton id="signupRun" for="signupActivity" itemIndex="4"/>
-                <h:graphicImage url="#{resource['/img/run.png']}"/>
-                <p:radioButton id="signupBook" for="signupActivity" itemIndex="5"/>
-                <h:graphicImage url="#{resource['/img/book.png']}"/>
-                -->
-
-                <br/><h:message for="signupActivity" style="color:red" /><br/><br/>
-                <h:commandButton id="signupOk" value="OK" action="#{userBean.submit()}" />
-                <br/><br/>
-                <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
-            </h:form>
-            <!-- <h:button id="signupCancel" value="Cancel" onclick="" /> -->
+        <p:dialog id="signupPopup" header="Signup" styleClass="registrationPopup" modal="true" resizable="false" widgetVar="signupDlg" width="480" height="600" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+            <ui:include src="signup.xhtml" />
         </p:dialog>
-        <p:dialog id="loginPopup" header="Login" styleClass="registrationPopup" modal="true" widgetVar="loginDlg">
-            <h:form id="loginForm">
-                <h:outputText styleClass="loginText" value="Enter your user name: "/>
-                <h:inputText id="loginUsername"/>
-                <br/>
-                <h:outputText styleClass="loginText" value="Enter your password: "/>
-                <h:inputSecret id="loginPassword"/>
-                <br/>
-                <h:commandButton id="loginOk" value="OK" />
-            </h:form>
-            <!-- <h:button id="loginCancel" value="Cancel" onclick="" /> -->
-            <br/>
-            <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
+        <p:dialog id="loginPopup" header="Login" styleClass="registrationPopup" modal="true" resizable="false" widgetVar="loginDlg" width="480" height="220" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+            <ui:include src="login.xhtml" />
         </p:dialog>
         <!-- <p:overlayPanel id="recoveryPopup" styleClass="registrationPopup">
             <h3>Sign up</h3>
         </p:overlayPanel> -->
+        <section>
+            <!-- editor -->
+            <div class="container">
+                <div class="btn-toolbar" data-role="editor-toolbar"
+                     data-target="#editor">
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Font Size"><i class="fa fa-text-height"></i>&nbsp;<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a data-edit="fontSize 5" class="fs-Five">Huge</a></li>
+                            <li><a data-edit="fontSize 3" class="fs-Three">Normal</a></li>
+                            <li><a data-edit="fontSize 1" class="fs-One">Small</a></li>
+                        </ul>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="bold" title="Bold (Ctrl/Cmd+B)"><i class="fa fa-bold"></i></a>
+                        <a class="btn btn-default" data-edit="italic" title="Italic (Ctrl/Cmd+I)"><i class="fa fa-italic"></i></a>
+                        <a class="btn btn-default" data-edit="strikethrough" title="Strikethrough"><i class="fa fa-strikethrough"></i></a>
+                        <a class="btn btn-default" data-edit="underline" title="Underline (Ctrl/Cmd+U)"><i class="fa fa-underline"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="insertunorderedlist" title="Bullet list"><i class="fa fa-list-ul"></i></a>
+                        <a class="btn btn-default" data-edit="insertorderedlist" title="Number list"><i class="fa fa-list-ol"></i></a>
+                        <a class="btn btn-default" data-edit="outdent" title="Reduce indent (Shift+Tab)"><i class="fa fa-outdent"></i></a>
+                        <a class="btn btn-default" data-edit="indent" title="Indent (Tab)"><i class="fa fa-indent"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="justifyleft" title="Align Left (Ctrl/Cmd+L)"><i class="fa fa-align-left"></i></a>
+                        <a class="btn btn-default" data-edit="justifycenter" title="Center (Ctrl/Cmd+E)"><i class="fa fa-align-center"></i></a>
+                        <a class="btn btn-default" data-edit="justifyright" title="Align Right (Ctrl/Cmd+R)"><i class="fa fa-align-right"></i></a>
+                        <a class="btn btn-default" data-edit="justifyfull" title="Justify (Ctrl/Cmd+J)"><i class="fa fa-align-justify"></i></a>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default dropdown-toggle" data-toggle="dropdown" title="Hyperlink"><i class="fa fa-link"></i></a>
+                        <div class="dropdown-menu input-append">
+                            <input placeholder="URL" type="text" data-edit="createLink" />
+                            <button class="btn" type="button">Add</button>
+                        </div>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="unlink" title="Remove Hyperlink"><i class="fa fa-unlink"></i></a>
+                        <span class="btn btn-default" title="Insert picture (or just drag and drop)" id="pictureBtn"> <i class="fa fa-picture-o"></i>
+                            <input type="file" data-role="magic-overlay" data-target="#pictureBtn" data-edit="insertImage" />
+                        </span>
+                    </div>
+                    <div class="btn-group">
+                        <a class="btn btn-default" data-edit="undo" title="Undo (Ctrl/Cmd+Z)"><i class="fa fa-undo"></i></a>
+                        <a class="btn btn-default" data-edit="redo" title="Redo (Ctrl/Cmd+Y)"><i class="fa fa-repeat"></i></a>
+                    </div>
+                </div>
+                <div id="editor" class="lead" data-placeholder="This is a basic example with a simple toolbar."></div>
+                <div id="editorPreview"></div>
+                <p style="text-align: center;">
+                    <a class="btn btn-large btn-default jumbo" href="#!" onClick="$('#editorPreview').html($('#editor').html());">Submit</a>
+                </p>
+            </div>
+            <script type='text/javascript'>$('#editor').wysiwyg();</script>
+        </section>
         <section>
             <h:panelGroup styleClass="searchButtonContainer">
                 <h:outputText id="viewby" value="View By:" /> 

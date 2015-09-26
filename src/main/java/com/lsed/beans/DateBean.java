@@ -25,7 +25,7 @@ public class DateBean
     
     public DateBean() {
         this.date = new Date();
-        this.df = new SimpleDateFormat("mm-dd-yyyy");
+        this.df = new SimpleDateFormat("MM-dd-yyyy");
     }
     
     public String getDate() {
