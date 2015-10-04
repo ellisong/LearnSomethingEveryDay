@@ -1,11 +1,29 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:comp="http://java.sun.com/jsf/composite/components"
       xmlns:p="http://primefaces.org/ui">
-    
-    <p:scrollPanel style="width:440px;height:1200px;">
+    <f:view locale="#{facesContext.externalContext.requestLocale}" />
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <h:outputStylesheet name="css/normalize.css" />
+        <h:outputStylesheet name="css/main.css" />
+        <title>Learn Something Every Day!</title>
+    </h:head>
+    <h:body>
+        <header>
+            <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
+        </header>
+        <br/>
         <h:form id="signupForm">
             <h:outputText styleClass="loginText" value="Enter a user name: " />
             <h:inputText id="signupUsername" value="#{userBean.username}" required="true" requiredMessage="Please enter a username">
@@ -103,6 +121,6 @@
             <br/><br/>
             <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
         </h:form>
-        <!-- <h:button id="signupCancel" value="Cancel" onclick="" /> --> 
-    </p:scrollPanel>
-</ui:composition>
+        <!-- <h:button id="signupCancel" value="Cancel" onclick="" /> -->
+    </h:body>
+</html>
