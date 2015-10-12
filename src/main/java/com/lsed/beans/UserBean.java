@@ -46,6 +46,11 @@ public class UserBean
     public UserBean() throws SQLException
     {
         users = null;
+        if (ds == null)
+            throw new SQLException("DataSource is NULL in UserBean()");
+        conn = ds.getConnection();
+        if (conn == null)
+            throw new SQLException("Cannot get connection from data source in UserBean()");
     }
     
     public List<User> getUsers() throws SQLException
@@ -101,12 +106,6 @@ public class UserBean
     
     public String submit() throws SQLException
     {
-        if (ds == null)
-            throw new SQLException("DataSource is NULL in SqlBeanTemplate()");
-        conn = ds.getConnection();
-        if (conn == null)
-            throw new SQLException("Cannot get connection from data source in submit()");
-        
         CallableStatement stmt = conn.prepareCall("{CALL insertUserInfo(?, ?, ?, ?, ?)}");
         stmt.setString(1, username);
         stmt.setString(2, password);

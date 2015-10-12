@@ -6,18 +6,16 @@
       xmlns:comp="http://java.sun.com/jsf/composite/components"
       xmlns:p="http://primefaces.org/ui">
     
-    <p:scrollPanel style="width:440px;height:220px;padding:4px;">
-        <h:form id="loginForm">
-            <h:outputText styleClass="loginText" value="Enter your user name: "/>
-            <h:inputText id="loginUsername"/>
-            <br/>
-            <h:outputText styleClass="loginText" value="Enter your password: "/>
-            <h:inputSecret id="loginPassword"/>
-            <br/>
-            <h:commandButton id="loginOk" value="OK" />
-        </h:form>
-        <!-- <h:button id="loginCancel" value="Cancel" onclick="" /> -->
+    <h:form id="loginForm">
+        <h:outputText styleClass="loginText" value="Enter your user name: "/>
+        <h:inputText id="loginUsername"/>
         <br/>
-        <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
-    </p:scrollPanel>
+        <h:outputText styleClass="loginText" value="Enter your password: "/>
+        <h:inputSecret id="loginPassword"/>
+        <br/>
+        <h:commandButton id="loginOk" value="OK" />
+    </h:form>
+    <!-- <h:button id="loginCancel" value="Cancel" onclick="" /> -->
+    <br/>
+    <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
 </ui:composition>

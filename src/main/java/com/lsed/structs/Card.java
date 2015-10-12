@@ -6,6 +6,7 @@
 package com.lsed.structs;
 
 import java.util.Date;
+import java.sql.Time;
 import java.util.List;
 import java.io.Serializable;
 
@@ -15,26 +16,49 @@ import java.io.Serializable;
  */
 public class Card implements Serializable
 {
-
+    private int cardId;
+    private int userId;
     private String title;
     private Date dateCreated;
     private Date dateModified;
     private String description;
     private String imageLink;
-    private String embedLink;
+    private String comments;
+    private Time timeToComplete;
     private List<String> categories;
     private List<String> prerequisites;
+    private List<Step> steps;
     
     public Card()
     {
+        cardId = 0;
+        userId = 0;
         title = "";
         dateCreated = null;
         dateModified = null;
         description = "";
         imageLink = "";
-        embedLink = "";
+        comments = "";
+        timeToComplete = null;
         categories = null;
         prerequisites = null;
+        steps = null;
+    }
+
+    public int getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(int cardId) {
+        this.cardId = cardId;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getTitle()
@@ -86,15 +110,21 @@ public class Card implements Serializable
     {
         this.imageLink = imageLink;
     }
-
-    public String getEmbedLink()
-    {
-        return embedLink;
+    
+    public String getComments() {
+        return comments;
     }
 
-    public void setEmbedLink(String embedLink)
-    {
-        this.embedLink = embedLink;
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
+
+    public Time getTimeToComplete() {
+        return timeToComplete;
+    }
+
+    public void setTimeToComplete(Time timeToComplete) {
+        this.timeToComplete = timeToComplete;
     }
 
     public List<String> getCategories()
@@ -115,6 +145,14 @@ public class Card implements Serializable
     public void setPrerequisites(List<String> prerequisites)
     {
         this.prerequisites = prerequisites;
+    }
+
+    public List<Step> getSteps() {
+        return steps;
+    }
+
+    public void setSteps(List<Step> steps) {
+        this.steps = steps;
     }
     
 }

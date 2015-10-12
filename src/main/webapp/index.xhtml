@@ -24,18 +24,14 @@ and open the template in the editor.
         <header>
             <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
             <h:panelGroup styleClass="headerButtonContainer">
-                <!-- TODO: Not make buttons refresh the page -->
                 <h:button id="signupButton" styleClass="headerButton" value="Sign up" outcome="signup" />
                 <br/>
                 <h:commandButton id="loginButton" styleClass="headerButton" type="button" value="Login" onclick="PF('loginDlg').show();" />
             </h:panelGroup>
         </header>
-        <p:dialog id="loginPopup" header="Login" styleClass="registrationPopup" modal="true" resizable="false" widgetVar="loginDlg" width="480" height="220" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+        <p:dialog id="loginPopup" header="Login" modal="true" resizable="false" widgetVar="loginDlg" width="auto" height="220" showEffect="clip" hideEffect="fold" closeOnEscape="true">
             <ui:include src="login.xhtml" />
         </p:dialog>
-        <!-- <p:overlayPanel id="recoveryPopup" styleClass="registrationPopup">
-            <h3>Sign up</h3>
-        </p:overlayPanel> -->
         <section>
             <h:panelGroup styleClass="searchButtonContainer">
                 <h:outputText id="viewby" value="View By:" /> 

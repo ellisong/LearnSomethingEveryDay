@@ -46,19 +46,19 @@ public class CardBean
     
     public List<Card> getCards() throws SQLException
     {
-        return getCardInfo_SortBy("Title");
+        return getCards_SortBy("Title");
     }
 
-    public List<Card> getCardInfo_SortBy(String sortParam) throws SQLException
+    public List<Card> getCards_SortBy(String sortParam) throws SQLException
     {
-        if (ds == null)
-            throw new SQLException("DataSource is NULL in SqlBeanTemplate()");
-        conn = ds.getConnection();
-        if (conn == null)
-            throw new SQLException("Cannot get connection from data source in getCardInfo_SortBy()");
-        
         if (cards == null) {
-            CallableStatement stmt = conn.prepareCall("{CALL queryCardInfo_SortBy(?)}");
+            if (ds == null)
+                throw new SQLException("DataSource is NULL in CardBean");
+            conn = ds.getConnection();
+            if (conn == null)
+                throw new SQLException("Cannot get connection from data source in CardBean");
+        
+            CallableStatement stmt = conn.prepareCall("{CALL queryCards_SortBy(?)}");
             stmt.setString(1, sortParam);
             if (stmt.execute()) {
                 ResultSet rs = stmt.getResultSet();
@@ -67,12 +67,15 @@ public class CardBean
                     while (rs.next()) {
                         Card card = new Card();
 
+                        card.setCardId(rs.getInt("CardId"));
+                        card.setUserId(rs.getInt("USER_UserId"));
                         card.setTitle(rs.getString("Title"));
                         card.setDescription(rs.getString("Description"));
                         card.setDateCreated(rs.getDate("DateCreated"));
                         card.setDateModified(rs.getDate("DateModified"));
                         card.setImageLink(rs.getString("ImageLink"));
-                        card.setEmbedLink(rs.getString("EmbedLink"));
+                        card.setComments(rs.getString("Comments"));
+                        card.setTimeToComplete(rs.getTime("TimeToComplete"));
 
                         cards.add(card);
                     }

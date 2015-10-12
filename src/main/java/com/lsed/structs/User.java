@@ -14,24 +14,31 @@ import java.io.Serializable;
  */
 public class User implements Serializable
 {
-    
+    private int userId;
     private String username;
     private String email;
     private String password;
     private String fullName;
     private String favoriteColor;
     private String favoriteActivity;
-    //private List<String> categories;
-    //private List<String> prerequisites;
     
     public User()
     {
+        userId = 0;
         username = "";
         email = "";
         password = "";
         fullName = "";
         favoriteColor = "";
         favoriteActivity = "";
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
