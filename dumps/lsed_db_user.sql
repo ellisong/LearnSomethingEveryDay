@@ -31,7 +31,7 @@ CREATE TABLE `user` (
   `FavoriteActivity` varchar(16) NOT NULL,
   PRIMARY KEY (`UserId`),
   UNIQUE KEY `Username_UNIQUE` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,7 +40,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'ellisong','pass','Grady Ellison','red','bike'),(2,'brebnerd','pass','Dave Brebner','blue','bike'),(3,'karstend','pass','David Karstens','green','sport'),(4,'jamesr','cheese','InsertNameHere','yellow','swim'),(5,'myusername','asdpass','myfullname','blue','park'),(6,'sdfsdfsdf','asdf','sdf sdfdf','green','park');
+INSERT INTO `user` VALUES (1,'ellisong','pass','Grady Ellison','red','bike'),(2,'brebnerd','pass','Dave Brebner','blue','bike'),(3,'karstend','pass','David Karstens','green','sport'),(4,'jamesr','cheese','InsertNameHere','yellow','swim'),(5,'myusername','asdpass','myfullname','blue','park');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -53,4 +53,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-09-21 16:15:29
+-- Dump completed on 2015-10-19 13:35:17
