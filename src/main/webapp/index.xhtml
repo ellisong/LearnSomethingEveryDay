@@ -22,21 +22,30 @@ and open the template in the editor.
     </h:head>
     <h:body>
         <header>
-            <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
-            <h:panelGroup styleClass="headerButtonContainer">
-                <h:button id="signupButton" styleClass="headerButton" value="Sign up" outcome="signup" />
-                <br/>
-                <h:commandButton id="loginButton" styleClass="headerButton" type="button" value="Login" onclick="PF('loginDlg').show();" />
-            </h:panelGroup>
+            <h:graphicImage styleClass="colorStrip" url="#{resource['/img/color_strip.png']}" />
         </header>
+        <section>
+            <h:panelGroup styleClass="menuContainer">
+                <h:panelGroup styleClass="menuLogoContainer">
+                    <h:graphicImage id="logo" alt="LSED - Learn Something Every Day" url="#{resource['/img/logo.png']}" />
+                </h:panelGroup>
+                <h:panelGroup styleClass="menuButtonContainer">
+                    <h:button id="signupButton" styleClass="menuButton" value="Sign Up" outcome="signup" />
+                    <br/>
+                    <h:commandButton id="loginButton" styleClass="menuButton" type="button" value="Log In" onclick="PF('loginDlg').show();" />
+                    <br/>
+                    <h:button id="aboutButton" styleClass="menuButton" value="About Us" outcome="about" />
+                </h:panelGroup>
+            </h:panelGroup>
+        </section>
         <p:dialog id="loginPopup" header="Login" modal="true" resizable="false" widgetVar="loginDlg" width="auto" height="220" showEffect="clip" hideEffect="fold" closeOnEscape="true">
             <ui:include src="login.xhtml" />
         </p:dialog>
         <section>
             <h:panelGroup styleClass="searchButtonContainer">
-                <h:outputText id="viewby" value="View By:" /> 
-                <h:selectOneListbox id="listBox" value="Category"/>
-                <h:commandButton id="latest" value="Latest" />
+                <h:outputText id="viewby" styleClass="searchButton" value="View By:" />
+                <h:commandButton id="category" styleClass="searchButton" value="Category" />
+                <h:commandButton id="latest" styleClass="searchButton" value="The Latest" />
             </h:panelGroup>
         </section>
         <section>
@@ -59,15 +68,17 @@ and open the template in the editor.
                 <h:panelGroup styleClass="cardContainer">
                     <h:outputText styleClass="card" value="Card" />
                 </h:panelGroup>
-                <h:panelGroup styleClass="cardContainer">
-                    <h:outputText styleClass="card" value="Card" />
-                </h:panelGroup>
+            </h:panelGroup>
+        </section>
+        <section>
+            <h:panelGroup styleClass="scrollButtonContainer">
+                <h:commandButton id="previous" styleClass="scrollButton" value="Previous" />
+                <h:outputText styleClass="scrollBlank" value="" />
+                <h:commandButton id="next" styleClass="scrollButton" value="Next" />
             </h:panelGroup>
         </section>
         <footer>
-            <h:panelGroup id="aboutContainer">
-                <h4>&copy; #{dateBean.date} by Grady Ellison, Max Brebner</h4>
-            </h:panelGroup>
+            <h:graphicImage styleClass="colorStrip" url="#{resource['/img/color_strip.png']}" />
         </footer>
         <br />
     </h:body>

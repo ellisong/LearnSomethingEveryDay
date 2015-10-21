@@ -7,8 +7,10 @@ body {
     background-color: #FFFFFF;
     margin: 0;
     padding: 0;
+    font-family: Lucida Sans, Arial;
     font-size: 1.0em;
     font-weight: normal;
+    color: #663399;
 }
 
 /* Headings/Text */
@@ -39,72 +41,6 @@ h4 {
     color: red;
 }
 
-/* Header */
-
-#logo {
-    display: inline;
-    margin: 2.5% 2.5% 0;
-    height: 150px;
-}
-
-.headerButtonContainer {
-    float: right;
-    margin: 2.5%;
-    padding: auto;
-    height: 150px;
-}
-
-.headerButton {
-    display: inline-block;
-    min-width: 125px;
-    width: auto;
-    min-height: 55px;
-    height: auto;
-    margin: 0.25em;
-    padding: 0.25em;
-    border: 2px solid black;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.75em;
-}
-
-/* Search section */
-
-.searchButtonContainer {
-    display: inline-block;
-    margin: 5% 5% 0;
-}
-
-.searchBox {
-    margin: 0.25em;
-    padding: 0.5em;
-}
-
-#viewby {
-    font-weight: bold;
-    font-size: 1.0em;
-}
-
-#listBox {
-    width: 10em;
-    height: auto;
-    margin: 0.25em;
-    font-size: 1.0em;
-}
-
-#latest {
-    float: right;
-    width: 4.5em;
-    height: auto;
-    margin-left: 3em;
-    padding: 0.25em;
-    border: 2px solid black;
-    text-align: center;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 1.25em;
-}
 
 /* Link coloring */
 
@@ -124,24 +60,136 @@ a:active {
     color: #FF0000;
 }
 
+/* Image resizing and coloring */
+.colorStrip {
+    display: block;
+    width: 100%;
+    height: 36px;
+    padding: 0;
+    margin: 0;
+}
+
+.purple {
+    background-color: #663399;
+}
+
+.cyan {
+    background-color: #66CCCC;
+}
+
+.green {
+    background-color: #33CC33;
+}
+
+.orange {
+    background-color: #FF9933;
+}
+
+/* Menu */
+
+#logo {
+    display: inline-block;
+    padding: 0;
+    max-width: 100%;
+}
+
+.menuContainer {
+    display: inline-block;
+    margin-left: 7%;
+}
+
+.menuLogoContainer {
+    display: inline-block;
+    max-width: 55%;
+    padding: auto;
+}
+
+.menuButtonContainer {
+    display: inline-block;
+    text-align: center;
+    margin-left: 8.8%;
+    margin-top: 5%;
+    padding: 0;
+}
+
+.menuButton {
+    display: inline-block;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 0px;
+    padding: 0.3em;
+    font-size: 2.6em;
+}
+
+#signupButton {
+    background-color: #66CCCC;
+}
+
+#loginButton {
+    background-color: #FF9933;
+}
+
+#aboutButton {
+    background-color: #33CC33;
+}
+
+/* Search button section */
+
+.searchButtonContainer {
+    display: inline-block;
+    width: 90%;
+    height: auto;
+    margin: 0 5% 32px;
+    padding: 0;
+}
+
+.searchButton {
+    display: inline-block;
+    margin: 2%;
+    width: 29%;
+    height: auto;
+    border: 0px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
+    font-size: 2.2em;
+}
+
+.searchBox {
+    margin: 0.25em;
+    padding: 0.5em;
+}
+
+#viewby {
+    background-color: #66CCCC;
+}
+
+#category {
+    background-color: #33CC33;
+}
+
+#latest {
+    background-color: #FF9933;
+}
+
 /* Card Section */
 
 .cardListContainer {
     display: inline-block;
     width: 90%;
     height: auto;
-    margin: 64px 5% 64px;
+    margin: 0 5% 0;
     padding: 0;
 }
 
 .cardContainer {
     display: inline-block;
-    margin: 1.75% 2.5% 1.75%;
+    margin: 1.75% 2% 4%;
     padding: 2.5%;
-    width: 20%;
-    height: 0;
+    width: 29%;
     padding-bottom: 25%;
-    border: 2px solid black;
+    border: 0px;
+    background-color: #66CCCC;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
@@ -155,10 +203,45 @@ a:active {
     padding: 10%;
 }
 
-/* Footer */
+/* Scroll button section */
 
-#aboutContainer {
+.scrollButtonContainer {
+    display: inline-block;
+    width: 90%;
+    height: auto;
+    margin: 0 5% 32px;
+    padding: 0;
+}
+
+.scrollButton {
+    display: inline-block;
+    margin: 2%;
+    width: 29%;
+    height: auto;
+    border: 0px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
     text-align: center;
+    font-size: 2.2em;
+}
+
+.scrollBlank {
+    display: inline-block;
+    margin: 2%;
+    width: 29%;
+    height: auto;
+    border: 0px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
+}
+
+#previous {
+    background-color: #66CCCC;
+}
+
+#next {
+    background-color: #33CC33;
 }
 
 /* Signup */
@@ -211,57 +294,6 @@ a:active {
     font-size: 1.0em;
 }
 
-/* Card Editor */
-
-#editor {
-    max-height: 250px;
-    height: 250px;
-    background-color: white;
-    border-collapse: separate; 
-    border: 1px solid rgb(204, 204, 204); 
-    padding: 4px; 
-    box-sizing: content-box; 
-    -webkit-box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset; 
-    box-shadow: rgba(0, 0, 0, 0.0745098) 0px 1px 1px 0px inset;
-    border-top-right-radius: 3px; border-bottom-right-radius: 3px;
-    border-bottom-left-radius: 3px; border-top-left-radius: 3px;
-    overflow: scroll;
-    outline: none;
-}
-
-#voiceBtn {
-    width: 20px;
-    color: transparent;
-    background-color: transparent;
-    transform: scale(2.0, 2.0);
-    -webkit-transform: scale(2.0, 2.0);
-    -moz-transform: scale(2.0, 2.0);
-    border: transparent;
-    cursor: pointer;
-    box-shadow: none;
-    -webkit-box-shadow: none;
-}
-
-div[data-role="editor-toolbar"] {
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
-.dropdown-menu a {
-    cursor: pointer;
-}
-
-/* Breakpoint 1: Move card rows to 3 */
-@media only screen and (max-width: 600px) {
-    .cardContainer {
-        width: 26.664%;
-        padding-bottom: 33.3333%;
-        margin: 2.5% 3.33% 2.5%;
-    }
-}
-
 /* Breakpoint 2: Center logo, header buttons, search buttons, card rows = 2,
                  Remove space between latest and view by box.                 
 */
@@ -269,26 +301,12 @@ div[data-role="editor-toolbar"] {
     #logo {
         display: block;
         margin: 2.5% auto 0;
-        height: 150px;
     }
     
     .headerButtonContainer {
-        float: none;
         display: inline-block;
         margin: auto;
         display: table;
-    }
-    
-    .searchButtonContainer {
-        float: none;
-        display: inline-block;
-        margin: auto;
-        display: table;
-    }
-    
-    #latest {
-        float: none;
-        margin-left: 0.25em;
     }
     
     .cardContainer {
