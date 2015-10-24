@@ -7,15 +7,34 @@
       xmlns:p="http://primefaces.org/ui">
     
     <h:form id="loginForm">
-        <h:outputText styleClass="loginText" value="Enter your user name: "/>
-        <h:inputText id="loginUsername"/>
+        <h:panelGroup styleClass="loginHeaderContainer">
+            <h:panelGroup styleClass="loginTitleContainer">
+                <h:outputText styleClass="loginTitle" value="Log in" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="loginLogoContainer">
+                <h:graphicImage id="loginLogo" alt="LSED - Learn Something Every Day" url="#{resource['/img/logo.png']}" />
+            </h:panelGroup>
+        </h:panelGroup>
+        <br/><br/>
+        <h:panelGroup styleClass="loginUsernameContainer">
+            <h:outputText id="loginUsernameText" value="Username: "/>
+            <h:inputText id="loginUsername"/>
+        </h:panelGroup>
+        <h:panelGroup styleClass="loginPasswordContainer">
+            <h:outputText id="loginPasswordText" value="Password: "/>
+            <h:inputSecret id="loginPassword"/>
+        </h:panelGroup>
         <br/>
-        <h:outputText styleClass="loginText" value="Enter your password: "/>
-        <h:inputSecret id="loginPassword"/>
-        <br/>
-        <h:commandButton id="loginOk" value="OK" />
+        <h:panelGroup styleClass="loginButtonContainer">
+            <h:commandButton id="loginOk" styleClass="loginButtonOk" value="OK" />
+            <h:commandButton id="loginCancel" styleClass="loginButtonCancel" value="Cancel" />
+        </h:panelGroup>
     </h:form>
-    <!-- <h:button id="loginCancel" value="Cancel" onclick="" /> -->
     <br/>
-    <a href="#" onclick=""><h2>Forgot your login details?</h2></a>
+    <h:link styleClass="loginForgotText" value="Forgot Username?" outcome="index" />
+    <br/>
+    <h:link styleClass="loginForgotText" value="Forgot Password?" outcome="index" />
+    <br/><br/>
+    <footer><h:graphicImage styleClass="loginColorStrip" url="#{resource['/img/color_strip.png']}" /></footer>
+    
 </ui:composition>

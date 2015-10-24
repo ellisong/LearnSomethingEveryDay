@@ -17,7 +17,6 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <h:outputStylesheet name="css/normalize.css" />
         <h:outputStylesheet name="css/main.css" />
-        <h:outputStylesheet name="css/login.css" />
         
         <title>Learn Something Every Day!</title>
     </h:head>
@@ -31,15 +30,15 @@ and open the template in the editor.
                     <h:graphicImage id="logo" alt="LSED - Learn Something Every Day" url="#{resource['/img/logo.png']}" />
                 </h:panelGroup>
                 <h:panelGroup styleClass="menuButtonContainer">
-                    <h:button id="signupButton" styleClass="menuButton" value="Sign Up" outcome="signup" />
+                    <h:button id="accountButton" styleClass="menuButton" value="My Account" outcome="myaccount" />
                     <br/>
-                    <h:commandButton id="loginButton" styleClass="menuButton" type="button" value="Log In" onclick="PF('loginDlg').show();" />
+                    <h:commandButton id="searchButton" styleClass="menuButton" type="button" value="Search" />
                     <br/>
                     <h:button id="aboutButton" styleClass="menuButton" value="About Us" outcome="about" />
                 </h:panelGroup>
             </h:panelGroup>
         </section>
-        <p:dialog id="loginPopup" header="Login" modal="true" resizable="false" widgetVar="loginDlg" width="500" height="auto" showEffect="clip" hideEffect="fold" closeOnEscape="true">
+        <p:dialog id="loginPopup" header="Login" modal="true" resizable="false" widgetVar="loginDlg" width="auto" height="220" showEffect="clip" hideEffect="fold" closeOnEscape="true">
             <ui:include src="login.xhtml" />
         </p:dialog>
         <section>

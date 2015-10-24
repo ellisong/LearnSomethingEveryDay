@@ -1,0 +1,116 @@
+#loginPopup {
+    border: 10px solid #663399;
+}
+
+.loginColorStrip {
+    display: inline-block;
+    width: 50%;
+    height: 18px;
+    padding: 0;
+    margin: 0;
+    vertical-align: bottom;
+}
+
+.loginHeaderContainer {
+    display: inline-block;
+}
+
+.loginTitleContainer {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+    padding-left: 5%;
+    padding-top: 7%;
+}
+
+.loginTitle {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 3.2em;
+    color: #663399;
+}
+
+.loginLogoContainer {
+    display: inline-block;
+    max-width: 45%;
+    padding-right: 5%;
+}
+
+.loginLogoContainer img {
+    display: inline-block;
+    padding: 0;
+    max-width: 100%;
+}
+
+.loginUsernameContainer {
+    display: block;
+    border: 0px;
+    background-color: #66CCCC;
+    color: #663399;
+    padding: 0.3em;
+    font-size: 1.8em;
+    margin: 0 5%;
+}
+
+.loginUsernameContainer input {
+    width: 55%;
+}
+
+.loginPasswordContainer {
+    display: block;
+    border: 0px;
+    background-color: #33CC33;
+    color: #663399;
+    padding: 0.3em;
+    font-size: 1.8em;
+    margin: 0 5%;
+}
+
+.loginPasswordContainer input {
+    width: 55%;
+    margin-left: 1.6%;
+}
+
+.loginButtonContainer {
+    display: inline-block;
+    width: 100%;
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.loginButtonOk {
+    display: inline-block;
+    margin: 0 5% 0 20%;
+    width: 25%;
+    height: auto;
+    border: 0px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
+    font-size: 1.6em !important;
+    background-color: #663399;
+    color: #FF9933;
+}
+
+.loginButtonCancel {
+    display: inline-block;
+    margin: 0 20% 0 5%;
+    width: 25%;
+    height: auto;
+    border: 0px;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
+    font-size: 1.6em !important;
+    background-color: #FF9933;
+    color: #663399;
+}
+
+.loginForgotText {
+    font-weight: normal;
+    font-size: 1.2em;
+    color: #663399;
+    padding-left: 5%;
+}
+

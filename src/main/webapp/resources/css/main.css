@@ -45,25 +45,29 @@ h4 {
 /* Link coloring */
 
 a:link {
-    color: #000000;
+    color: #663399;
+    text-decoration: none;
 }
 
 a:visited {
-    color: #000000;
+    color: #663399;
+    text-decoration: none;
 }
 
 a:hover {
-    color: #FF0000;
+    color: #663399;
+    text-decoration: none;
 }
 
 a:active {
-    color: #FF0000;
+    color: #663399;
+    text-decoration: none;
 }
 
 /* Image resizing and coloring */
 .colorStrip {
     display: block;
-    width: 100%;
+    width: 92.2%;
     height: 36px;
     padding: 0;
     margin: 0;
@@ -85,6 +89,16 @@ a:active {
     background-color: #FF9933;
 }
 
+/* Global dialog settings */
+
+.ui-dialog .ui-dialog-titlebar {
+   display: none !important;
+}
+
+.ui-dialog-content {
+    padding: 0 !important;
+}
+
 /* Menu */
 
 #logo {
@@ -101,12 +115,11 @@ a:active {
 .menuLogoContainer {
     display: inline-block;
     max-width: 55%;
-    padding: auto;
 }
 
 .menuButtonContainer {
     display: inline-block;
-    text-align: center;
+    width: 28%;
     margin-left: 8.8%;
     margin-top: 5%;
     padding: 0;
@@ -117,7 +130,9 @@ a:active {
     margin-bottom: 20px;
     width: 100%;
     border: 0px;
-    padding: 0.3em;
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+    text-align: center;
     font-size: 2.6em;
 }
 
@@ -133,9 +148,17 @@ a:active {
     background-color: #33CC33;
 }
 
-/* Search button section */
+#accountButton {
+    background-color: #66CCCC;
+}
 
-.searchButtonContainer {
+#searchButton {
+    background-color: #FF9933;
+}
+
+/* Navigate button section */
+
+.viewButtonContainer {
     display: inline-block;
     width: 90%;
     height: auto;
@@ -143,7 +166,7 @@ a:active {
     padding: 0;
 }
 
-.searchButton {
+.viewButton {
     display: inline-block;
     margin: 2%;
     width: 29%;
@@ -285,13 +308,6 @@ a:active {
 
 .signupActivityLabel input:checked + img {
     border: 2px solid red;
-}
-
-/* Login */
-
-.loginText {
-    font-weight: normal;
-    font-size: 1.0em;
 }
 
 /* Breakpoint 2: Center logo, header buttons, search buttons, card rows = 2,
