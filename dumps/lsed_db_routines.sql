@@ -27,6 +27,7 @@
 /*!50003 SET collation_connection  = utf8_general_ci */ ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+USE lsed_db;
 DELIMITER ;;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `insertUserInfo`(IN username VARCHAR(32), IN passw VARCHAR(128), IN fullName VARCHAR(48), 
 	 IN favoriteColor VARCHAR(8), IN favoriteActivity VARCHAR(16))

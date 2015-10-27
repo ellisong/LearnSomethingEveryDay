@@ -18,7 +18,7 @@
 --
 -- Table structure for table `card_category`
 --
-
+USE lsed_db;
 DROP TABLE IF EXISTS `card_category`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
