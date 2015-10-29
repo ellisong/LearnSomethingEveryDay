@@ -117,7 +117,7 @@ a:active {
 
 .menuLogoContainer {
     display: inline-block;
-    max-width: 61%;
+    width: 61%;
     margin: 0 2.5%;
 }
 
