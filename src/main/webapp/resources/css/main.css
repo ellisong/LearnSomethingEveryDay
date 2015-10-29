@@ -239,8 +239,8 @@ a:active {
 
 .scrollButton {
     display: inline-block;
-    margin: 2%;
-    width: 29%;
+    margin: 2.5%;
+    width: 28%;
     height: auto;
     border: 0px;
     padding-top: 0.3em;
@@ -251,8 +251,8 @@ a:active {
 
 .scrollBlank {
     display: inline-block;
-    margin: 2%;
-    width: 29%;
+    margin: 2.5%;
+    width: 28%;
     height: auto;
     border: 0px;
     padding-top: 0.3em;
