@@ -67,7 +67,7 @@ a:active {
 /* Image resizing and coloring */
 .colorStrip {
     display: block;
-    width: 92.25%;
+    width: 91.85%;
     height: 36px;
     padding: 0;
     margin: 0;
@@ -154,7 +154,7 @@ a:active {
 #accountButton {
     background-color: #66CCCC;
     padding-top: 0.6em;
-    font-size: 4.1vw;
+    font-size: 4vw;
     padding-bottom: 0.6em;
 }
 
@@ -194,6 +194,7 @@ a:active {
 
 #latest {
     background-color: #FF9933;
+    font-size: 4.6vw;
 }
 
 /* Card Section */
