@@ -17,36 +17,58 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <h:outputStylesheet name="css/normalize.css" />
         <h:outputStylesheet name="css/main.css" />
+        <h:outputStylesheet name="css/signup.css" />
         <title>Learn Something Every Day!</title>
     </h:head>
     <h:body>
         <header>
-            <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
+            <h:graphicImage styleClass="colorStrip" url="#{resource['/img/color_strip.png']}" />
         </header>
-        <br/>
-        <h:form id="signupForm">
-            <h:outputText styleClass="loginText" value="Enter a user name: " />
-            <h:inputText id="signupUsername" value="#{userBean.username}" required="true" requiredMessage="Please enter a username">
-                <f:validateLength minimum="1" maximum="32" />
-            </h:inputText>
-            <br/><h:message for="signupUsername" style="color:red" /><br/>
-            <h:outputText styleClass="loginText" value="Enter a password: " />
-            <h:inputSecret id="signupPassword" value="#{userBean.password}" required="true" requiredMessage="Please enter a password">
-                <f:attribute name="signupConfirmPassword" value="#{signupConfirmPassword}" />
-                <f:validator validatorId="com.lsed.validators.SignupPasswordValidator" />
-            </h:inputSecret>
-            <br/><h:message for="signupPassword" style="color:red" /><br/>
-            <h:outputText styleClass="loginText" value="Re-enter password: " />
-            <h:inputSecret id="signupConfirmPassword" binding="#{signupConfirmPassword}" />
-            <br/><br/>
-            <h:outputText styleClass="loginText" value="Enter full name: " />
-            <h:inputText id="signupFullName" value="#{userBean.fullName}"  required="true" requiredMessage="Please enter your full name">
-                <f:validateLength minimum="1" maximum="48" />
-            </h:inputText>
-            <br/><h:message for="signupFullName" style="color:red" /><br/>
-            <h:outputText value="(This is to help us get you back in if you forget your password.)" />
-            <br/><br/>
-            <h:outputText styleClass="loginText" value="Pick your favorite color:" />
+        <section>
+            <h:panelGroup styleClass="signupHeaderContainer">
+                <h:panelGroup styleClass="signupTitleContainer">
+                    <h:outputText styleClass="signupTitle" value="Sign Up" />
+                </h:panelGroup>
+                <h:panelGroup styleClass="signupLogoContainer">
+                    <h:graphicImage id="signupLogo" alt="LSED - Learn Something Every Day" url="#{resource['/img/logo.png']}" />
+                </h:panelGroup>
+            </h:panelGroup>
+        </section>
+        <br/><br/>
+        <h:form id="signupForm">   
+            <h:panelGroup styleClass="signupUsernameContainer">
+                <h:outputText styleClass="signupText" value="Enter Username: " />
+                <h:inputText id="signupUsername" value="#{userBean.username}" required="true" requiredMessage="Please enter a username">
+                    <f:validateLength minimum="1" maximum="32" />
+                </h:inputText>
+                <h:message for="signupUsername" style="color:red" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="signupPasswordContainer">
+                <h:outputText styleClass="signupText" value="Enter a Password: " />
+                <h:inputSecret id="signupPassword" value="#{userBean.password}" required="true" requiredMessage="Please enter a password">
+                    <f:attribute name="signupConfirmPassword" value="#{signupConfirmPassword}" />
+                    <f:validator validatorId="com.lsed.validators.SignupPasswordValidator" />
+                </h:inputSecret>
+                <h:message for="signupPassword" style="color:red" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="signupConfirmPasswordContainer">
+                <h:outputText styleClass="signupText" value="Re-enter Password: " />
+                <h:inputSecret id="signupConfirmPassword" binding="#{signupConfirmPassword}" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="signupFullNameContainer">
+                <h:outputText styleClass="signupText" value="Enter a Full Name: " />
+                <h:inputText id="signupFullName" value="#{userBean.fullName}" required="true" requiredMessage="Please enter your full name">
+                    <f:validateLength minimum="1" maximum="48" />
+                </h:inputText>
+                <h:message for="signupFullName" style="color:red" />
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup styleClass="signupTextLabelContainer_Color">
+                <h:outputText styleClass="signupTextBig" value="Select One" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="signupColorMessageContainer">
+                <h:message for="signupColor" style="color:red" />
+            </h:panelGroup>
             <br/>
             <p:selectOneRadio id="signupColor" value="#{userBean.favoriteColor}" layout="custom" required="true" requiredMessage="Please select your favorite color">
                 <f:selectItem itemValue="red" />
@@ -56,32 +78,39 @@ and open the template in the editor.
                 <f:selectItem itemValue="pink" />
                 <f:selectItem itemValue="purple" />
             </p:selectOneRadio>
-            <label class="signupColorLabel">
-                <input id="signupForm:signupColor:0_clone" name="signupForm:signupColor" type="radio" />
-                <h:graphicImage url="#{resource['/img/red.png']}"/>
-            </label>
-            <label class="signupColorLabel">
-                <input id="signupForm:signupColor:1_clone" name="signupForm:signupColor" type="radio" />
-                <h:graphicImage url="#{resource['/img/blue.png']}"/>
-            </label>
-            <label class="signupColorLabel">
-                <input id="signupForm:signupColor:2_clone" name="signupForm:signupColor" type="radio" />
-                <h:graphicImage url="#{resource['/img/green.png']}"/>
-            </label>
-            <label class="signupColorLabel">
-                <input id="signupForm:signupColor:3_clone" name="signupForm:signupColor" type="radio" />
-                <h:graphicImage url="#{resource['/img/yellow.png']}"/>
-            </label>
-            <label class="signupColorLabel">
-                <input id="signupForm:signupColor:4_clone" name="signupForm:signupColor" type="radio" />
-                <h:graphicImage url="#{resource['/img/pink.png']}"/>
-            </label>
-            <label class="signupColorLabel">
-                <input id="signupForm:signupColor:5_clone" name="signupForm:signupColor" type="radio" />
-                <h:graphicImage url="#{resource['/img/purple.png']}"/>
-            </label>
-            <br/><h:message for="signupColor" style="color:red" /><br/><br/>
-            <h:outputText styleClass="loginText" value="Pick your favorite activity:" />
+            <h:panelGroup styleClass="signupColorContainer">
+                <label class="signupColorLabel">
+                    <input id="signupForm:signupColor:0_clone" name="signupForm:signupColor" type="radio" />
+                    <h:graphicImage url="#{resource['/img/red.png']}"/>
+                </label>
+                <label class="signupColorLabel">
+                    <input id="signupForm:signupColor:1_clone" name="signupForm:signupColor" type="radio" />
+                    <h:graphicImage url="#{resource['/img/blue.png']}"/>
+                </label>
+                <label class="signupColorLabel">
+                    <input id="signupForm:signupColor:2_clone" name="signupForm:signupColor" type="radio" />
+                    <h:graphicImage url="#{resource['/img/green.png']}"/>
+                </label>
+                <label class="signupColorLabel">
+                    <input id="signupForm:signupColor:3_clone" name="signupForm:signupColor" type="radio" />
+                    <h:graphicImage url="#{resource['/img/yellow.png']}"/>
+                </label>
+                <label class="signupColorLabel">
+                    <input id="signupForm:signupColor:4_clone" name="signupForm:signupColor" type="radio" />
+                    <h:graphicImage url="#{resource['/img/pink.png']}"/>
+                </label>
+                <label class="signupColorLabel">
+                    <input id="signupForm:signupColor:5_clone" name="signupForm:signupColor" type="radio" />
+                    <h:graphicImage url="#{resource['/img/purple.png']}"/>
+                </label>
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup styleClass="signupTextLabelContainer_Activity">
+                <h:outputText styleClass="signupTextBig" value="Select An Activity" />
+            </h:panelGroup>
+            <h:panelGroup styleClass="signupActivityMessageContainer">
+                <h:message for="signupActivity" style="color:red" />
+            </h:panelGroup>
             <br/>
             <p:selectOneRadio id="signupActivity" value="#{userBean.favoriteActivity}" layout="custom" required="true" requiredMessage="Please select your favorite activity">
                 <f:selectItem itemValue="bike" />
@@ -91,36 +120,41 @@ and open the template in the editor.
                 <f:selectItem itemValue="run" />
                 <f:selectItem itemValue="book" />
             </p:selectOneRadio>
-            <label class="signupActivityLabel">
-                <input id="signupForm:signupActivity:0_clone" name="signupForm:signupActivity" type="radio" />
-                <h:graphicImage url="#{resource['/img/bike.png']}"/>
-            </label>
-            <label class="signupActivityLabel">
-                <input id="signupForm:signupActivity:1_clone" name="signupForm:signupActivity" type="radio" />
-                <h:graphicImage url="#{resource['/img/swim.png']}"/>
-            </label>
-            <label class="signupActivityLabel">
-                <input id="signupForm:signupActivity:2_clone" name="signupForm:signupActivity" type="radio" />
-                <h:graphicImage url="#{resource['/img/sport.png']}"/>
-            </label>
-            <label class="signupActivityLabel">
-                <input id="signupForm:signupActivity:3_clone" name="signupForm:signupActivity" type="radio" />
-                <h:graphicImage url="#{resource['/img/park.png']}"/>
-            </label>
-            <label class="signupActivityLabel">
-                <input id="signupForm:signupActivity:4_clone" name="signupForm:signupActivity" type="radio" />
-                <h:graphicImage url="#{resource['/img/run.png']}"/>
-            </label>
-            <label class="signupActivityLabel">
-                <input id="signupForm:signupActivity:5_clone" name="signupForm:signupActivity" type="radio" />
-                <h:graphicImage url="#{resource['/img/book.png']}"/>
-            </label>
-
-            <br/><h:message for="signupActivity" style="color:red" /><br/><br/>
-            <h:commandButton id="signupOk" value="OK" action="#{userBean.submit()}" />
+            <h:panelGroup styleClass="signupActivityContainer">
+                <label class="signupActivityLabel">
+                    <input id="signupForm:signupActivity:0_clone" name="signupForm:signupActivity" type="radio" />
+                    <h:graphicImage url="#{resource['/img/bike.png']}"/>
+                </label>
+                <label class="signupActivityLabel">
+                    <input id="signupForm:signupActivity:1_clone" name="signupForm:signupActivity" type="radio" />
+                    <h:graphicImage url="#{resource['/img/swim.png']}"/>
+                </label>
+                <label class="signupActivityLabel">
+                    <input id="signupForm:signupActivity:2_clone" name="signupForm:signupActivity" type="radio" />
+                    <h:graphicImage url="#{resource['/img/sport.png']}"/>
+                </label>
+                <label class="signupActivityLabel">
+                    <input id="signupForm:signupActivity:3_clone" name="signupForm:signupActivity" type="radio" />
+                    <h:graphicImage url="#{resource['/img/park.png']}"/>
+                </label>
+                <label class="signupActivityLabel">
+                    <input id="signupForm:signupActivity:4_clone" name="signupForm:signupActivity" type="radio" />
+                    <h:graphicImage url="#{resource['/img/run.png']}"/>
+                </label>
+                <label class="signupActivityLabel">
+                    <input id="signupForm:signupActivity:5_clone" name="signupForm:signupActivity" type="radio" />
+                    <h:graphicImage url="#{resource['/img/book.png']}"/>
+                </label>
+            </h:panelGroup>
+            <br/>
+            <h:commandButton id="signupOk" value="OK" styleClass="signupOKButton" action="#{userBean.submit()}" />
+            <h:commandButton id="signupCancel" value="Cancel" styleClass="signupCancelButton" action="#{userBean.submit()}" />
             <br/><br/>
             <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
         </h:form>
         <!-- <h:button id="signupCancel" value="Cancel" onclick="" /> -->
+        <footer>
+            <h:graphicImage styleClass="colorStrip" url="#{resource['/img/color_strip.png']}" />
+        </footer>
     </h:body>
 </html>

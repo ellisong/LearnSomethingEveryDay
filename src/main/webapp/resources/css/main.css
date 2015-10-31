@@ -99,6 +99,11 @@ a:active {
     padding: 0 !important;
 }
 
+.ui-scrollpanel {
+    border: 0;
+    padding: 8px 0;
+}
+
 /* Menu */
 
 #logo {
@@ -267,49 +272,6 @@ a:active {
 
 #next {
     background-color: #33CC33;
-}
-
-/* Signup */
-
-.ui-scrollpanel {
-    border: 0;
-    padding: 8px 0;
-}
-
-.signupColorLabel {
-    display: inline-block;
-}
-
-.signupColorLabel input {
-    visibility: hidden;
-    position: absolute;
-}
-
-.signupColorLabel img {
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.signupColorLabel input:checked + img {
-    border: 2px solid red;
-}
-
-.signupActivityLabel {
-    display: inline-block;
-}
-
-.signupActivityLabel input {
-    visibility: hidden;
-    position: absolute;
-}
-
-.signupActivityLabel img {
-    cursor: pointer;
-    border: 2px solid transparent;
-}
-
-.signupActivityLabel input:checked + img {
-    border: 2px solid red;
 }
 
 /* Media queries */
