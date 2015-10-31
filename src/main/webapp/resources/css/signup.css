@@ -1,0 +1,198 @@
+.signupHeaderContainer {
+    display: inline-block;
+}
+
+.signupTitleContainer {
+    display: inline-block;
+    width: 45%;
+    vertical-align: top;
+    padding-left: 5%;
+    padding-top: 7%;
+}
+
+.signupTitle {
+    display: inline-block;
+    font-weight: bold;
+    font-size: 10vw;
+    color: #663399;
+}
+
+.signupLogoContainer {
+    display: inline-block;
+    max-width: 45%;
+    padding-right: 5%;
+}
+
+.signupLogoContainer img {
+    display: inline-block;
+    padding: 0;
+    max-width: 100%;
+}
+
+.signupText {
+    font-size: 4vw;
+}
+
+.signupTextBig {
+    font-size: 4.7vw;
+}
+
+.signupUsernameContainer {
+    display: block;
+    border: 0px;
+    background-color: #66CCCC;
+    color: #663399;
+    padding: 2%;
+    margin: 0 5%;
+}
+
+.signupUsernameContainer input {
+    width: 50%;
+    margin-left: 7.4%;
+}
+
+.signupPasswordContainer {
+    display: block;
+    border: 0px;
+    background-color: #FF9933;
+    color: #663399;
+    padding: 2%;
+    margin: 0 5%;
+}
+
+.signupPasswordContainer input {
+    width: 50%;
+    margin-left: 4.6%;
+}
+
+.signupConfirmPasswordContainer {
+    display: block;
+    border: 0px;
+    background-color: #33CC33;
+    color: #663399;
+    padding: 2%;
+    margin: 0 5%;
+}
+
+.signupConfirmPasswordContainer input {
+    width: 50%;
+    margin-left: 1.6%;
+}
+
+.signupFullNameContainer {
+    display: block;
+    border: 0px;
+    background-color: #66CCCC;
+    color: #663399;
+    padding: 2%;
+    margin: 0 5%;
+}
+
+.signupFullNameContainer input {
+    width: 50%;
+    margin-left: 3.3%;
+}
+
+.signupTextLabelContainer_Color {
+    display: inline-block;
+    width: 42%;
+    height: auto;
+    margin: 4% 29%;
+    padding: 1.75% 0;
+    text-align: center;
+    background-color: #663399;
+    color: #66CCCC;
+}
+
+.signupColorMessageContainer {
+    text-align: center;
+}
+
+.signupColorContainer {
+    display: block;
+    width: 75%;
+    margin: 0 15%;
+}
+
+.signupColorLabel {
+    display: inline-block;
+}
+
+.signupColorLabel input {
+    visibility: hidden;
+    position: absolute;
+}
+
+.signupColorLabel img {
+    cursor: pointer;
+    border: 4px solid transparent;
+}
+
+.signupColorLabel input:checked + img {
+    border: 4px solid red;
+}
+
+.signupTextLabelContainer_Activity {
+    display: inline-block;
+    width: 42%;
+    height: auto;
+    margin: 4% 29%;
+    padding: 1.75% 0;
+    text-align: center;
+    background-color: #66CCCC;
+    color: #663399;
+}
+
+.signupActivityMessageContainer {
+    text-align: center;
+}
+
+.signupActivityContainer {
+    display: block;
+    width: 80%;
+    margin: 0 10%;
+}
+
+.signupActivityLabel {
+    display: inline-block;
+}
+
+.signupActivityLabel input {
+    visibility: hidden;
+    position: absolute;
+}
+
+.signupActivityLabel img {
+    cursor: pointer;
+    border: 4px solid transparent;
+}
+
+.signupActivityLabel input:checked + img {
+    border: 4px solid red;
+}
+
+.signupOKButton {
+    display: inline-block;
+    border: 0;
+    width: 15%;
+    height: auto;
+    margin: 8% 17% 8% 17%;
+    padding: 1% 0;
+    font-size: 4vw;
+    text-align: center;
+    background-color: #663399;
+    color: #FF9933;
+}
+
+.signupCancelButton {
+    display: inline-block;
+    border: 0;
+    width: 15%;
+    height: auto;
+    margin: 8% 17% 8% 17%;
+    padding: 1% 0;
+    font-size: 4vw;
+    text-align: center;
+    background-color: #FF9933;
+    color: #663399;
+}
