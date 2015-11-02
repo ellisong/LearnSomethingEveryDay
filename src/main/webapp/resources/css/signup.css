@@ -105,13 +105,17 @@
 }
 
 .signupColorMessageContainer {
+    display: inline-block;
+    width: 75%;
+    height: auto;
+    margin: 0 12.5%;
     text-align: center;
 }
 
 .signupColorContainer {
     display: block;
     width: 75%;
-    margin: 0 15%;
+    margin: 0 12.5%;
 }
 
 .signupColorLabel {
@@ -144,6 +148,10 @@
 }
 
 .signupActivityMessageContainer {
+    display: inline-block;
+    width: 75%;
+    height: auto;
+    margin: 0 12.5%;
     text-align: center;
 }
 
