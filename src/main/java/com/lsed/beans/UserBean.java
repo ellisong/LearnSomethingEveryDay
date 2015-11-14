@@ -13,7 +13,7 @@ import java.sql.SQLException;
 
 import java.util.List;
 
-import com.lsed.structs.User;
+import com.lsed.jpa.User;
 import java.sql.Connection;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -113,6 +113,6 @@ public class UserBean
         stmt.setString(4, favoriteColor);
         stmt.setString(5, favoriteActivity);
         stmt.execute();
-        return "success";
+        return "homepage.xhtml";
     }
 }

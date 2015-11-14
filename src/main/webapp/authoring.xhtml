@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components"
+      xmlns:p="http://primefaces.org/ui">
+    <f:view locale="#{facesContext.externalContext.requestLocale}" />
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <h:outputStylesheet name="css/normalize.css" />
+        <h:outputStylesheet name="css/main.css" />
+        <h:outputStylesheet name="css/authoring.css" />
+        <title>Learn Something Every Day!</title>
+    </h:head>
+    <h:body>
+        <f:view>
+            <f:metadata>
+                <f:viewParam name="id" value="#{stepBean.cardId}" />
+            </f:metadata>
+            <header>
+                <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
+            </header>
+            <br/>
+            <section>
+                <ui:repeat var="s" value="#{stepBean.steps}">
+                    <h:graphicImage value="#{s.imageLink}" />
+                    <br/>
+                    <h:outputFormat value="Step {0}: {1}">
+                        <f:param value="#{s.number}" />
+                        <f:param value="${s.description}" />
+                    </h:outputFormat>
+                    <br/><br/>
+                </ui:repeat>
+                <!-- editor -->
+                <!--
+                <h:form id="authoringForm">
+                    <h:commandButton id="authoringSubmit" value="Submit" onclick=""/>
+                </h:form>
+                -->
+            </section>
+        </f:view>
+    </h:body>
+</html>
+

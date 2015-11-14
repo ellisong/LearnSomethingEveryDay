@@ -15,7 +15,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.ArrayList;
 
-import com.lsed.structs.Card;
+import com.lsed.jpa.Card;
+import com.lsed.jpa.CardPK;
 import java.sql.Connection;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -67,8 +68,7 @@ public class CardBean
                     while (rs.next()) {
                         Card card = new Card();
 
-                        card.setCardId(rs.getInt("CardId"));
-                        card.setUserId(rs.getInt("USER_UserId"));
+                        card.setCardPK(new CardPK(rs.getInt("CardId"), rs.getInt("USER_UserId")));
                         card.setTitle(rs.getString("Title"));
                         card.setDescription(rs.getString("Description"));
                         card.setDateCreated(rs.getDate("DateCreated"));

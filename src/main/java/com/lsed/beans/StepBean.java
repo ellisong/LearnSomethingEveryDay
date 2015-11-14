@@ -5,7 +5,8 @@
  */
 package com.lsed.beans;
 
-import com.lsed.structs.Step;
+import com.lsed.jpa.Step;
+import com.lsed.jpa.StepPK;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -64,7 +65,7 @@ public class StepBean
                         while (rs.next()) {
                             Step step = new Step();
 
-                            step.setStepId(rs.getInt("StepId"));
+                            step.setStepPK(new StepPK(rs.getInt("StepId"), -1, -1));
                             step.setNumber(rs.getInt("Number"));
                             step.setTimeToComplete(rs.getTime("TimeToComplete"));
                             step.setImageLink(rs.getString("ImageLink"));
