@@ -149,7 +149,7 @@ and open the template in the editor.
             </h:panelGroup>
             <br/>
             <h:commandButton id="signupOk" value="OK" styleClass="signupOKButton" action="#{userBean.submit()}" />
-            <h:commandButton id="signupCancel" value="Cancel" styleClass="signupCancelButton" action="#{userBean.submit()}" />
+            <h:button id="signupCancel" value="Cancel" styleClass="signupCancelButton" outcome="index.xhtml" />
             <br/><br/>
             <!-- <h:outputText id="signupSuccess" styleClass="successText" value="Success! Welcome to LSED!" /> -->
         </h:form>
