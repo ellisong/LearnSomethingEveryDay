@@ -32,6 +32,11 @@ public class StepBean
     
     private List<Step> steps;
     private int cardId;
+    private int stepId;
+    private int number;
+    private String heading;
+    private String description;
+    private String imageLink;
     
      /**
      * Creates a new instance of StepBean
@@ -90,6 +95,46 @@ public class StepBean
 
     public void setCardId(int cardId) {
         this.cardId = cardId;
+    }
+    
+    public int getStepId() {
+        return stepId;
+    }
+
+    public void setStepId(int stepId) {
+        this.stepId = stepId;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImageLink() {
+        return imageLink;
+    }
+
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
     }
     
 }
