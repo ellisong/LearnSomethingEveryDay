@@ -31,28 +31,32 @@ and open the template in the editor.
             <br/>
             <section>
                 <form id="authoring_form">
-                    <h:commandButton id="authoring_add_step" value="Add Step" action="#{stepBean.addstep()}" />
+                    <h:panelGroup>
+                        <h:commandButton id="authoring_add_step" value="Add Step" action="#{stepBean.addstep()}" />
+                        <h:commandButton id="authoring_submit_steps" value="Submit Steps" action="#{stepBean.submit()}" />
+                    </h:panelGroup>
                     <br/>
                     <h:panelGroup>
                         <h:outputText value="Step Heading" styleClass="authoringText" />
                         <h:inputText id="authoring_heading" value="${stepBean.heading}">
-                            <f:validateLength minimum="0" maximum="127" />
+                            <f:validateLength minimum="0" maximum="128" />
                         </h:inputText>
                     </h:panelGroup>
                     <br/>
                     <h:panelGroup>
                         <h:outputText value="Step Text" styleClass="authoringText" />
                         <h:inputText id="authoring_text" value="#{stepBean.description}" required="true" requiredMessage="Please enter the step's text">
-                            <f:validateLength minimum="1" maximum="255" />
+                            <f:validateLength minimum="1" maximum="512" />
                         </h:inputText>
                     </h:panelGroup>
                     <br/>
                     <h:panelGroup>
                         <h:outputText value="Step Image" styleClass="authoringText" />
-                        <h:inputText id="authoring_image" value="#{stepBean.imageLink}" />
-                        <h:graphicImage id="step_image" alt="Step_Image" url="#{resource['/img/walk.png']}" />
+                        <h:inputText id="authoring_image" value="#{stepBean.imageLink}">
+                            <f:validateLength minimum="0" maximum="256" />
+                        </h:inputText>
+                        <h:graphicImage id="step_image" alt="Step_Image" url="#{stepBean.imageLink}" />
                     </h:panelGroup>
-                    <h:commandButton id="authoring_submit_steps" value="Submit Steps" action="#{stepBean.submit()}" />
                 </form>
             </section>
             <section>
