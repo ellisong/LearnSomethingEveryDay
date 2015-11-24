@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 
 import com.lsed.jpa.User;
+import java.io.Serializable;
 import java.sql.Connection;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -25,37 +26,32 @@ import javax.sql.DataSource;
  */
 @ManagedBean(name = "userBean", eager = true)
 @ViewScoped
-public class UserBean
+public class UserBean implements Serializable
 {
     @Resource(lookup="jdbc/lsed_db")
     protected DataSource ds;
-    protected Connection conn;
     
     private List<User> users;
     
-    public String username;
-    public String password;
-    public String fullName;
-    public String favoriteColor;
-    public String favoriteActivity;
+    private String username;
+    private String password;
+    private String fullName;
+    private String favoriteColor;
+    private String favoriteActivity;
     
      /**
      * Creates a new instance of UserBean
      * @throws java.sql.SQLException
      */
-    public UserBean() throws SQLException
-    {
+    public UserBean() throws SQLException {
         users = null;
     }
     
-    public List<User> getUsers() throws SQLException
-    {
-        //return getCardInfo_SortBy("Title");
+    public List<User> getUsers() throws SQLException {
         return users;
     }
     
-    public void setUsers(List<User> users)
-    {
+    public void setUsers(List<User> users) {
         this.users = users;
     }
     
@@ -101,18 +97,28 @@ public class UserBean
     
     public String submit() throws SQLException
     {
-        if (ds == null)
-            throw new SQLException("DataSource is NULL in UserBean()");
-        conn = ds.getConnection();
-        if (conn == null)
-            throw new SQLException("Cannot get connection from data source in UserBean()");
-        CallableStatement stmt = conn.prepareCall("{CALL insertUserInfo(?, ?, ?, ?, ?)}");
-        stmt.setString(1, username);
-        stmt.setString(2, password);
-        stmt.setString(3, fullName);
-        stmt.setString(4, favoriteColor);
-        stmt.setString(5, favoriteActivity);
-        stmt.execute();
-        return "homepage.xhtml";
+        Connection conn = null;
+        try {
+            if (ds == null)
+                throw new SQLException("DataSource is NULL in UserBean()");
+            conn = ds.getConnection();
+            if (conn == null)
+                throw new SQLException("Cannot get connection from data source in UserBean()");
+            CallableStatement stmt = conn.prepareCall("{CALL insertUserInfo(?, ?, ?, ?, ?)}");
+            stmt.setString(1, username);
+            stmt.setString(2, password);
+            stmt.setString(3, fullName);
+            stmt.setString(4, favoriteColor);
+            stmt.setString(5, favoriteActivity);
+            stmt.execute();
+            return "homepage.xhtml";
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        
     }
 }

@@ -17,6 +17,7 @@ import java.util.ArrayList;
 
 import com.lsed.jpa.Card;
 import com.lsed.jpa.CardPK;
+import java.io.Serializable;
 import java.sql.Connection;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
@@ -28,11 +29,10 @@ import javax.sql.DataSource;
  */
 @ManagedBean(name = "cardBean", eager = true)
 @ViewScoped
-public class CardBean
+public class CardBean implements Serializable
 {
     @Resource(lookup="jdbc/lsed_db")
     protected DataSource ds;
-    protected Connection conn;
     
     private List<Card> cards;
     
@@ -52,34 +52,44 @@ public class CardBean
 
     public List<Card> getCards_SortBy(String sortParam) throws SQLException
     {
-        if (cards == null) {
-            if (ds == null)
-                throw new SQLException("DataSource is NULL in CardBean");
-            conn = ds.getConnection();
-            if (conn == null)
-                throw new SQLException("Cannot get connection from data source in CardBean");
-        
-            CallableStatement stmt = conn.prepareCall("{CALL queryCards_SortBy(?)}");
-            stmt.setString(1, sortParam);
-            if (stmt.execute()) {
-                ResultSet rs = stmt.getResultSet();
-                if (rs != null) {
-                    cards = new ArrayList<>();
-                    while (rs.next()) {
-                        Card card = new Card();
+        Connection conn = null;
+        try {
+            if (cards == null) {
+                if (ds == null)
+                    throw new SQLException("DataSource is NULL in CardBean");
+                conn = ds.getConnection();
+                if (conn == null)
+                    throw new SQLException("Cannot get connection from data source in CardBean");
 
-                        card.setCardPK(new CardPK(rs.getInt("CardId"), rs.getInt("USER_UserId")));
-                        card.setTitle(rs.getString("Title"));
-                        card.setDescription(rs.getString("Description"));
-                        card.setDateCreated(rs.getDate("DateCreated"));
-                        card.setDateModified(rs.getDate("DateModified"));
-                        card.setImageLink(rs.getString("ImageLink"));
-                        card.setComments(rs.getString("Comments"));
-                        card.setTimeToComplete(rs.getTime("TimeToComplete"));
+                CallableStatement stmt = conn.prepareCall("{CALL queryCards_SortBy(?)}");
+                stmt.setString(1, sortParam);
+                if (stmt.execute()) {
+                    ResultSet rs = stmt.getResultSet();
+                    if (rs != null) {
+                        cards = new ArrayList<>();
+                        while (rs.next()) {
+                            Card card = new Card();
 
-                        cards.add(card);
+                            card.setCardPK(new CardPK(rs.getInt("CardId"), rs.getInt("USER_UserId")));
+                            card.setTitle(rs.getString("Title"));
+                            card.setDescription(rs.getString("Description"));
+                            card.setDateCreated(rs.getDate("DateCreated"));
+                            card.setDateModified(rs.getDate("DateModified"));
+                            card.setImageLink(rs.getString("ImageLink"));
+                            card.setComments(rs.getString("Comments"));
+                            card.setTimeToComplete(rs.getTime("TimeToComplete"));
+
+                            cards.add(card);
+                        }
                     }
                 }
+            }
+        } catch (Exception e) {
+            throw e;
+        }
+        finally {
+            if (conn != null) {
+                conn.close();
             }
         }
         return cards;

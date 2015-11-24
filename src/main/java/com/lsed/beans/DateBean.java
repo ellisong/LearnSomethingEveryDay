@@ -6,7 +6,7 @@
 package com.lsed.beans;
 
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ViewScoped;
+import javax.faces.bean.RequestScoped;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,7 +17,7 @@ import java.util.Date;
  * @author Grady Ellison
  */
 @ManagedBean(name = "dateBean", eager = true)
-@ViewScoped
+@RequestScoped
 public class DateBean
 {
     public Date date;

@@ -21,56 +21,57 @@ and open the template in the editor.
         <title>Learn Something Every Day!</title>
     </h:head>
     <h:body>
-        <f:view>
+        <f:view id="authoring_view">
             <f:metadata>
-                <f:viewParam name="id" value="#{stepBean.cardId}" />
+                <f:viewParam name="authoringCardId" value="#{stepBean.cardId}" />
             </f:metadata>
-            <header>
-                <h:graphicImage id="logo" alt="LSED_Logo" url="#{resource['/img/logo.png']}" />
-            </header>
+        </f:view>
+        <header>
+            <h:graphicImage id="logo" alt="LSED_Logo" url="#{resource['/img/logo.png']}" />
+        </header>
+        <br/>
+        <h:form id="authoringForm">
+            <h:commandButton id="authoringAddStep" value="Add Step" action="#{stepBean.submit()}">
+                <f:ajax execute="@form" render="authoringStepDisplay" />
+            </h:commandButton>
             <br/>
-            <section>
-                <form id="authoring_form">
-                    <h:panelGroup>
-                        <h:commandButton id="authoring_add_step" value="Add Step" action="#{stepBean.addstep()}" />
-                        <h:commandButton id="authoring_submit_steps" value="Submit Steps" action="#{stepBean.submit()}" />
-                    </h:panelGroup>
-                    <br/>
-                    <h:panelGroup>
-                        <h:outputText value="Step Heading" styleClass="authoringText" />
-                        <h:inputText id="authoring_heading" value="${stepBean.heading}">
-                            <f:validateLength minimum="0" maximum="128" />
-                        </h:inputText>
-                    </h:panelGroup>
-                    <br/>
-                    <h:panelGroup>
-                        <h:outputText value="Step Text" styleClass="authoringText" />
-                        <h:inputText id="authoring_text" value="#{stepBean.description}" required="true" requiredMessage="Please enter the step's text">
-                            <f:validateLength minimum="1" maximum="512" />
-                        </h:inputText>
-                    </h:panelGroup>
-                    <br/>
-                    <h:panelGroup>
-                        <h:outputText value="Step Image" styleClass="authoringText" />
-                        <h:inputText id="authoring_image" value="#{stepBean.imageLink}">
-                            <f:validateLength minimum="0" maximum="256" />
-                        </h:inputText>
-                        <h:graphicImage id="step_image" alt="Step_Image" url="#{stepBean.imageLink}" />
-                    </h:panelGroup>
-                </form>
-            </section>
-            <section>
-                <ui:repeat var="s" value="#{stepBean.steps}">
+            <h:panelGroup>
+                <h:outputText value="Step Heading" styleClass="authoringText"/>
+                <h:inputText id="authoringHeading" value="#{stepBean.heading}" required="true" requiredMessage="Please enter the step's heading/title">
+                    <f:validateLength minimum="1" maximum="128" />
+                </h:inputText>
+                <h:message for="authoringHeading" style="color:red" />
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup>
+                <h:outputText value="Step Text" styleClass="authoringText" />
+                <h:inputText id="authoringText" value="#{stepBean.description}" required="true" requiredMessage="Please enter the step's text">
+                    <f:validateLength minimum="1" maximum="512" />
+                </h:inputText>
+                <h:message for="authoringText" style="color:red" />
+            </h:panelGroup>
+            <br/>
+            <h:panelGroup>
+                <h:outputText value="Step Image" styleClass="authoringText" />
+                <h:inputText id="authoringImage" value="#{stepBean.imageLink}">
+                    <f:validateLength minimum="0" maximum="256" />
+                    <f:validator validatorId="com.lsed.validators.AuthoringImageLinkValidator" />
+                </h:inputText>
+                <h:graphicImage id="stepImage" alt="Step_Image" url="#{stepBean.imageLink}" />
+                <h:message for="authoringImage" style="color:red" />
+            </h:panelGroup>
+            <h:panelGroup id="authoringStepDisplay">
+                <ui:repeat var="s" value="#{stepBean.getSteps_ByCardId()}">
                     <h:graphicImage value="#{s.imageLink}" />
                     <br/>
-                    <h:outputFormat value="Step {0}: {1}">
-                        <f:param value="#{s.number}" />
+                    <h:outputFormat value="{0}: {1}">
+                        <f:param value="#{s.heading}" />
                         <f:param value="${s.description}" />
                     </h:outputFormat>
                     <br/><br/>
                 </ui:repeat>
-            </section>
-        </f:view>
+            </h:panelGroup>
+        </h:form>
     </h:body>
 </html>
 

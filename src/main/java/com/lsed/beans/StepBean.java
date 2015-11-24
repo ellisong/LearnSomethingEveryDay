@@ -8,6 +8,7 @@ package com.lsed.beans;
 import com.lsed.jpa.Card;
 import com.lsed.jpa.Step;
 import com.lsed.jpa.StepPK;
+import java.io.Serializable;
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -30,21 +31,20 @@ import javax.sql.DataSource;
  */
 @ManagedBean(name = "stepBean", eager = true)
 @ViewScoped
-public class StepBean
+public class StepBean implements Serializable
 {
     @Resource(lookup="jdbc/lsed_db")
     protected DataSource ds;
-    protected Connection conn;
     
     private List<Step> steps;
     
-    public int stepId;
-    public int cardId;
-    public int number;
-    public String heading;
-    public String description;
-    public String imageLink;
-    public Time timeToComplete;
+    private int stepId;
+    private int cardId;
+    private int number;
+    private String heading;
+    private String description;
+    private String imageLink;
+    private Time timeToComplete;
     
      /**
      * Creates a new instance of StepBean
@@ -52,35 +52,31 @@ public class StepBean
      */
     public StepBean() throws SQLException
     {
-        steps = null;
-        cardId = 0;
-        stepId = 0;
-        number = 1;
-        heading = "";
-        description = "";
+        steps = new ArrayList<>();
         imageLink = "";
         timeToComplete = new Time(0);
     }
 
     public List<Step> getSteps() throws SQLException {
-        return getSteps_ByCardId();
+        return steps;
     }
     
     public List<Step> getSteps_ByCardId() throws SQLException {
-        if (steps == null) {
+        Connection conn = null;
+        try {
             if (cardId > 0) {
                 if (ds == null)
                     throw new SQLException("DataSource is NULL in StepBean");
                 conn = ds.getConnection();
                 if (conn == null)
                     throw new SQLException("Cannot get connection from data source in StepBean");
-        
+
                 CallableStatement stmt = conn.prepareCall("{CALL querySteps_ByCardId(?)}");
                 stmt.setInt(1, cardId);
                 if (stmt.execute()) {
                     ResultSet rs = stmt.getResultSet();
                     if (rs != null) {
-                        steps = new ArrayList<>();
+                        steps.clear();
                         while (rs.next()) {
                             Step step = new Step();
 
@@ -95,6 +91,12 @@ public class StepBean
                         }
                     }
                 }
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.close();
             }
         }
         return steps;
@@ -152,39 +154,49 @@ public class StepBean
         this.imageLink = imageLink;
     }
     
-    public void submit() throws SQLException {
+    public String submit() throws SQLException {
         //(IN cardId INT(11), IN userId INT(11), IN timeToComplete TIME, IN imageLink VARCHAR(256), IN description VARCHAR(512), IN heading VARCHAR(128))
-        System.out.println("cardId: " + cardId);
-        if (cardId > 0) {
-            EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.lsed.LearnSomethingEveryDay");
-            EntityManager em = emf.createEntityManager();
-            TypedQuery query = em.createNamedQuery("Card.findByCardId", Card.class);
-            query.setParameter("cardId", cardId);
-            List<Card> results = query.getResultList();
-            int userId = -1;
-            if (!results.isEmpty()) {
-                userId = results.get(0).getUser().getUserId();
-            }
-            System.out.println("userId: " + userId);
-            if (userId > 0) {
-                if (ds == null)
-                    throw new SQLException("DataSource is NULL in StepBean");
-                conn = ds.getConnection();
-                if (conn == null)
-                    throw new SQLException("Cannot get connection from data source in StepBean");
+        Connection conn = null;
+        try {
+            System.out.println("cardId: " + cardId);
+            if (cardId > 0) {
+                EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.lsed.LearnSomethingEveryDay");
+                EntityManager em = emf.createEntityManager();
+                TypedQuery query = em.createNamedQuery("Card.findByCardId", Card.class);
+                query.setParameter("cardId", cardId);
+                List<Card> results = query.getResultList();
+                int userId = -1;
+                if (!results.isEmpty()) {
+                    userId = results.get(0).getUser().getUserId();
+                }
+                System.out.println("userId: " + userId);
+                if (userId > 0) {
+                    if (ds == null)
+                        throw new SQLException("DataSource is NULL in StepBean");
+                    conn = ds.getConnection();
+                    if (conn == null)
+                        throw new SQLException("Cannot get connection from data source in StepBean");
 
-                CallableStatement stmt = conn.prepareCall("{CALL insertLatestStepForCard(?, ?, ?, ?, ?, ?)}");
-                System.out.println("imageLink: " + imageLink);
-                System.out.println("description: " + description);
-                System.out.println("heading: " + heading);
-                stmt.setInt(1, cardId);
-                stmt.setInt(2, userId);
-                stmt.setTime(3, timeToComplete);
-                stmt.setString(4, imageLink);
-                stmt.setString(5, description);
-                stmt.setString(6, heading);
-                stmt.execute();
+                    CallableStatement stmt = conn.prepareCall("{CALL insertLatestStepForCard(?, ?, ?, ?, ?, ?)}");
+                    System.out.println("imageLink: " + imageLink);
+                    System.out.println("description: " + description);
+                    System.out.println("heading: " + heading);
+                    stmt.setInt(1, cardId);
+                    stmt.setInt(2, userId);
+                    stmt.setTime(3, timeToComplete);
+                    stmt.setString(4, imageLink);
+                    stmt.setString(5, description);
+                    stmt.setString(6, heading);
+                    stmt.execute();
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.close();
             }
         }
+        return "";
     }
 }
