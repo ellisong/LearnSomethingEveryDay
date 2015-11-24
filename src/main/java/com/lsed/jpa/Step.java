@@ -40,6 +40,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Step.findByImageLink", query = "SELECT s FROM Step s WHERE s.imageLink = :imageLink"),
     @NamedQuery(name = "Step.findByDescription", query = "SELECT s FROM Step s WHERE s.description = :description")})
 public class Step implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 128)
+    @Column(name = "Heading")
+    private String heading;
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected StepPK stepPK;
@@ -155,6 +160,14 @@ public class Step implements Serializable {
     @Override
     public String toString() {
         return "com.lsed.jpa.Step[ stepPK=" + stepPK + " ]";
+    }
+
+    public String getHeading() {
+        return heading;
+    }
+
+    public void setHeading(String heading) {
+        this.heading = heading;
     }
     
 }
