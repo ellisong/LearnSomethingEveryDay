@@ -29,6 +29,10 @@ and open the template in the editor.
             <h:graphicImage id="logo" alt="LSED_Logo" url="#{resource['/img/logo.png']}" />
         </header>
         <br/>
+        <h:form id="authoringCardForm">
+            <h:commandButton id="publish" value="Publish" action="#{stepBean.publish(1)}" />
+            <h:commandButton id="draft" value="Draft" action="#{stepBean.publish(0)}" />
+        </h:form>
         <h:form id="authoringForm">
             <h:commandButton id="authoringAddStep" value="Add Step" action="#{stepBean.submit()}">
                 <f:ajax execute="@form" render="authoringStepDisplay" />

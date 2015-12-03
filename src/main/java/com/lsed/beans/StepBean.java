@@ -16,9 +16,12 @@ import java.sql.SQLException;
 import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.component.UIInput;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.TypedQuery;
@@ -162,7 +165,6 @@ public class StepBean implements Serializable
 
     public void setPublish(int publish) throws SQLException {
         this.publish = publish;
-        this.publish();
     }
 
     public Time getTimeToComplete() {
@@ -173,8 +175,12 @@ public class StepBean implements Serializable
         this.timeToComplete = timeToComplete;
     }
     
-    public void publish() throws SQLException {
+    public void publish(int publish) throws SQLException {
+        if ((publish == 0) || (publish == 1))
+            setPublish(publish);
         Connection conn = null;
+        System.out.println(publish);
+        System.out.println(cardId);
         try {
             if (cardId > 0) {
                 if (ds == null)
@@ -185,7 +191,7 @@ public class StepBean implements Serializable
 
                 CallableStatement stmt = conn.prepareCall("{CALL publishCard(?, ?)}");
                 stmt.setInt(1, cardId);
-                stmt.setInt(2, publish);
+                stmt.setInt(2, this.publish);
                 stmt.execute();
             }
         } catch (Exception e) {
