@@ -37,6 +37,7 @@ public class StepBean implements Serializable
     protected DataSource ds;
     
     private List<Step> steps;
+    private int publish;
     
     private int stepId;
     private int cardId;
@@ -55,6 +56,7 @@ public class StepBean implements Serializable
         steps = new ArrayList<>();
         imageLink = "";
         timeToComplete = new Time(0);
+        publish = 0;
     }
 
     public List<Step> getSteps() throws SQLException {
@@ -153,12 +155,53 @@ public class StepBean implements Serializable
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
+
+    public int getPublish() {
+        return publish;
+    }
+
+    public void setPublish(int publish) throws SQLException {
+        this.publish = publish;
+        this.publish();
+    }
+
+    public Time getTimeToComplete() {
+        return timeToComplete;
+    }
+
+    public void setTimeToComplete(Time timeToComplete) {
+        this.timeToComplete = timeToComplete;
+    }
     
-    public String submit() throws SQLException {
+    public void publish() throws SQLException {
+        Connection conn = null;
+        try {
+            if (cardId > 0) {
+                if (ds == null)
+                    throw new SQLException("DataSource is NULL in StepBean");
+                conn = ds.getConnection();
+                if (conn == null)
+                    throw new SQLException("Cannot get connection from data source in StepBean");
+
+                CallableStatement stmt = conn.prepareCall("{CALL publishCard(?, ?)}");
+                stmt.setInt(1, cardId);
+                stmt.setInt(2, publish);
+                stmt.execute();
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        //return "viewcard.xhtml?cardId=" + cardId;
+    }
+    
+    public void submit() throws SQLException {
         //(IN cardId INT(11), IN userId INT(11), IN timeToComplete TIME, IN imageLink VARCHAR(256), IN description VARCHAR(512), IN heading VARCHAR(128))
         Connection conn = null;
         try {
-            System.out.println("cardId: " + cardId);
             if (cardId > 0) {
                 EntityManagerFactory emf = Persistence.createEntityManagerFactory("com.lsed.LearnSomethingEveryDay");
                 EntityManager em = emf.createEntityManager();
@@ -169,7 +212,6 @@ public class StepBean implements Serializable
                 if (!results.isEmpty()) {
                     userId = results.get(0).getUser().getUserId();
                 }
-                System.out.println("userId: " + userId);
                 if (userId > 0) {
                     if (ds == null)
                         throw new SQLException("DataSource is NULL in StepBean");
@@ -178,9 +220,6 @@ public class StepBean implements Serializable
                         throw new SQLException("Cannot get connection from data source in StepBean");
 
                     CallableStatement stmt = conn.prepareCall("{CALL insertLatestStepForCard(?, ?, ?, ?, ?, ?)}");
-                    System.out.println("imageLink: " + imageLink);
-                    System.out.println("description: " + description);
-                    System.out.println("heading: " + heading);
                     stmt.setInt(1, cardId);
                     stmt.setInt(2, userId);
                     stmt.setTime(3, timeToComplete);
@@ -197,6 +236,5 @@ public class StepBean implements Serializable
                 conn.close();
             }
         }
-        return "";
     }
 }

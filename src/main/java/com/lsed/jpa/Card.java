@@ -45,6 +45,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Card.findByComments", query = "SELECT c FROM Card c WHERE c.comments = :comments"),
     @NamedQuery(name = "Card.findByTimeToComplete", query = "SELECT c FROM Card c WHERE c.timeToComplete = :timeToComplete")})
 public class Card implements Serializable {
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "isPublished")
+    private int isPublished;
     private static final long serialVersionUID = 1L;
     @EmbeddedId
     protected CardPK cardPK;
@@ -215,6 +219,14 @@ public class Card implements Serializable {
     @Override
     public String toString() {
         return "com.lsed.jpa.Card[ cardPK=" + cardPK + " ]";
+    }
+
+    public int getIsPublished() {
+        return isPublished;
+    }
+
+    public void setIsPublished(int isPublished) {
+        this.isPublished = isPublished;
     }
     
 }

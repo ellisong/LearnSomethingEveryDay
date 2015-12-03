@@ -16,50 +16,33 @@ and open the template in the editor.
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <h:outputStylesheet name="css/normalize.css" />
-        <!--
-        <h:outputStylesheet name="js/external/google-code-prettify/prettify.css" />
-        <h:outputStylesheet name="css/bootstrap-combined.no-icons.min.css" />
-        <h:outputStylesheet name="css/bootstrap-responsive.min.css" />
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"></link>
-        -->
         <h:outputStylesheet name="css/main.css" />
-        
-        <!--
-        <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-        <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
-        <script src="/LearnSomethingEveryDay/resources/js/external/jquery.hotkeys.js"></script>
-        <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
-        <script src="/LearnSomethingEveryDay/resources/js/external/google-code-prettify/prettify.js"></script>
-        <script src="/LearnSomethingEveryDay/resources/js/bootstrap-wysiwyg.js"></script>
-        -->
+        <h:outputStylesheet name="css/authoring.css" />
         <title>Learn Something Every Day!</title>
     </h:head>
     <h:body>
-        <f:view>
+        <f:view id="viewcard_view">
             <f:metadata>
-                <f:viewParam name="id" value="#{stepBean.cardId}" />
+                <f:viewParam name="cardId" value="#{stepBean.cardId}" />
             </f:metadata>
-            <header>
-                <h:graphicImage id="logo" alt="LSED_Logo_Large" url="#{resource['/img/LSED_Logo_Large.png']}" />
-            </header>
-            <br/>
-            <section>
-                <ui:repeat var="s" value="#{stepBean.steps}">
+        </f:view>
+        <header>
+            <h:graphicImage id="logo" alt="LSED_Logo" url="#{resource['/img/logo.png']}" />
+        </header>
+        <br/>
+        <h:form id="viewcardForm">
+            <h:panelGroup id="viewcardStepDisplay">
+                <ui:repeat var="s" value="#{stepBean.getSteps_ByCardId()}">
                     <h:graphicImage value="#{s.imageLink}" />
                     <br/>
-                    <h:outputFormat value="Step {0}: {1}">
-                        <f:param value="#{s.number}" />
+                    <h:outputFormat value="{0}: {1}">
+                        <f:param value="#{s.heading}" />
                         <f:param value="${s.description}" />
                     </h:outputFormat>
                     <br/><br/>
                 </ui:repeat>
-                <!-- editor -->
-                <!--
-                <h:form id="authoringForm">
-                    <h:commandButton id="authoringSubmit" value="Submit" onclick=""/>
-                </h:form>
-                -->
-            </section>
-        </f:view>
+            </h:panelGroup>
+        </h:form>
     </h:body>
 </html>
+

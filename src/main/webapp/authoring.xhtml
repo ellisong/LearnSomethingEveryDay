@@ -10,8 +10,7 @@ and open the template in the editor.
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:comp="http://java.sun.com/jsf/composite/components"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:comp="http://java.sun.com/jsf/composite/components">
     <f:view locale="#{facesContext.externalContext.requestLocale}" />
     <h:head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,7 +22,7 @@ and open the template in the editor.
     <h:body>
         <f:view id="authoring_view">
             <f:metadata>
-                <f:viewParam name="authoringCardId" value="#{stepBean.cardId}" />
+                <f:viewParam name="cardId" value="#{stepBean.cardId}" />
             </f:metadata>
         </f:view>
         <header>
