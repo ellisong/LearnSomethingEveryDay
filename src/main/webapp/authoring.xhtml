@@ -57,7 +57,7 @@ and open the template in the editor.
                 <h:inputText id="authoringImage" value="#{stepBean.imageLink}">
                     <f:validateLength minimum="0" maximum="256" />
                     <f:validator validatorId="com.lsed.validators.AuthoringImageLinkValidator" />
-                    <f:ajax execute="@form" render="@form" />
+                    <f:ajax execute="authoringGraphicDisplay" render="@form" />
                 </h:inputText>
                 <h:graphicImage id="stepImage" alt="Step_Image" url="#{stepBean.imageLink}" rendered="#{stepBean.imageLink != null}" />
                 <h:message for="authoringImage" style="color:red" />
