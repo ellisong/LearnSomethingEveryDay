@@ -179,8 +179,6 @@ public class StepBean implements Serializable
         if ((publish == 0) || (publish == 1))
             setPublish(publish);
         Connection conn = null;
-        System.out.println(publish);
-        System.out.println(cardId);
         try {
             if (cardId > 0) {
                 if (ds == null)
