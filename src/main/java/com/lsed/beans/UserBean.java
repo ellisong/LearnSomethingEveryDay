@@ -111,7 +111,7 @@ public class UserBean implements Serializable
             stmt.setString(4, favoriteColor);
             stmt.setString(5, favoriteActivity);
             stmt.execute();
-            return "homepage.xhtml";
+            return "homepage?faces-redirect=true";
         } catch (Exception e) {
             throw e;
         } finally {
