@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:comp="http://java.sun.com/jsf/composite/components">
+    <f:view locale="#{facesContext.externalContext.requestLocale}" />
+    <h:head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <h:outputStylesheet name="css/normalize.css" />
+        <h:outputStylesheet name="css/main.css" />
+        <h:outputStylesheet name="css/editcard.css" />
+        <title>Learn Something Every Day!</title>
+    </h:head>
+    <h:body>
+        <f:view id="editCard_view">
+            <f:metadata>
+                <f:viewParam name="cardId" value="#{stepBean.cardId}" />
+            </f:metadata>
+        </f:view>
+        <header>
+            <h:graphicImage id="logo" alt="LSED_Logo" url="#{resource['/img/logo.png']}" />
+        </header>
+        <br/>
+        <!-- Card editing -->
+        <h:panelGroup rendered="#{stepBean.cardId > 0}">
+            <h:form id="editCardCardForm">
+                <h:outputText value="This card is currently under draft" rendered="#{stepBean.publish == 0}" />
+                <h:outputText value="This card is currently being published" rendered="#{stepBean.publish == 1}" />
+                <br/>
+                <h:commandButton id="publish" value="Publish" action="#{stepBean.publish(1)}" />
+                <h:commandButton id="draft" value="Draft" action="#{stepBean.publish(0)}" />
+            </h:form>
+            <h:form id="editCardForm">
+                <h:commandButton id="editCardAddStep" value="Add Step" action="#{stepBean.submit()}">
+                    <f:ajax execute="@form" render="editCardStepDisplay" />
+                </h:commandButton>
+                <br/>
+                <h:panelGroup>
+                    <h:outputText value="Step Heading" styleClass="editCardText"/>
+                    <h:inputText id="editCardHeading" value="#{stepBean.heading}" required="true" requiredMessage="Please enter the step's heading/title">
+                        <f:validateLength minimum="1" maximum="128" />
+                        <f:ajax execute="@form" render="@form" />
+                    </h:inputText>
+                    <h:message for="editCardHeading" style="color:red" />
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup>
+                    <h:outputText value="Step Text" styleClass="editCardText" />
+                    <h:inputText id="editCardText" value="#{stepBean.description}" required="true" requiredMessage="Please enter the step's text">
+                        <f:validateLength minimum="1" maximum="512" />
+                        <f:ajax execute="@form" render="@form" />
+                    </h:inputText>
+                    <h:message for="editCardText" style="color:red" />
+                </h:panelGroup>
+                <br/>
+                <h:panelGroup id="editCardGraphicDisplay">
+                    <h:outputText value="Step Image" styleClass="editCardText" />
+                    <h:inputText id="editCardImage" value="#{stepBean.imageLink}">
+                        <f:validateLength minimum="0" maximum="256" />
+                        <f:validator validatorId="com.lsed.validators.EditCardImageLinkValidator" />
+                        <f:ajax execute="editCardGraphicDisplay" render="@form" />
+                    </h:inputText>
+                    <h:graphicImage id="stepImage" alt="Step_Image" url="#{stepBean.imageLink}" rendered="#{stepBean.imageLink != null}" />
+                    <h:message for="editCardImage" style="color:red" />
+                </h:panelGroup>
+                <h:panelGroup id="editCardStepDisplay">
+                    <ui:repeat var="s" value="#{stepBean.getSteps_ByCardId()}">
+                        <h:graphicImage value="#{s.imageLink}" />
+                        <br/>
+                        <h:outputFormat value="{0}: {1}">
+                            <f:param value="#{s.heading}" />
+                            <f:param value="${s.description}" />
+                        </h:outputFormat>
+                        <br/><br/>
+                    </ui:repeat>
+                </h:panelGroup>
+            </h:form>
+        </h:panelGroup>
+    </h:body>
+</html>
+

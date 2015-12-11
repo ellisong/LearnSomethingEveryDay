@@ -21,8 +21,8 @@ import javax.faces.validator.ValidatorException;
  *
  * @author comma
  */
-@FacesValidator("com.lsed.validators.AuthoringImageLinkValidator")
-public class authoringImageLinkValidator implements Validator
+@FacesValidator("com.lsed.validators.EditCardImageLinkValidator")
+public class editCardImageLinkValidator implements Validator
 {
     String exceptionMessage = "If wanted, please enter a valid image URL with an image ending in: .bmp, .png, .jpg, .jpeg, or .gif";
     

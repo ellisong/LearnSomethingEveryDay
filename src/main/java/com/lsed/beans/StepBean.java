@@ -17,6 +17,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -41,6 +42,7 @@ public class StepBean implements Serializable
     
     private List<Step> steps;
     private int publish;
+    private List<String> imageList;
     
     private int stepId;
     private int cardId;
@@ -57,6 +59,7 @@ public class StepBean implements Serializable
     public StepBean() throws SQLException
     {
         steps = new ArrayList<>();
+        updateImageList();
         imageLink = "";
         timeToComplete = new Time(0);
         publish = 0;
@@ -109,6 +112,10 @@ public class StepBean implements Serializable
 
     public void setSteps(List<Step> steps) {
         this.steps = steps;
+    }
+    
+    public List<String> getImageList() {
+        return imageList;
     }
 
     public int getCardId() {
@@ -240,5 +247,38 @@ public class StepBean implements Serializable
                 conn.close();
             }
         }
+    }
+    
+    public List<String> updateImageList() throws SQLException {
+        Connection conn = null;
+        try {
+            if (cardId > 0) {
+                if (ds == null)
+                    throw new SQLException("DataSource is NULL in StepBean");
+                conn = ds.getConnection();
+                if (conn == null)
+                    throw new SQLException("Cannot get connection from data source in StepBean");
+
+                CallableStatement stmt = conn.prepareCall("{CALL getImagesFromStepsFromCard(?)}");
+                stmt.setInt(1, cardId);
+                if (stmt.execute()) {
+                    ResultSet rs = stmt.getResultSet();
+                    if (rs != null) {
+                        imageList = new ArrayList<>();
+                        while (rs.next()) {
+                            imageList.add(rs.getString("ImageLink"));
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw e;
+        } finally {
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return imageList;
+        //return "viewcard.xhtml?cardId=" + cardId;
     }
 }

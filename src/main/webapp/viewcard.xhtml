@@ -17,7 +17,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <h:outputStylesheet name="css/normalize.css" />
         <h:outputStylesheet name="css/main.css" />
-        <h:outputStylesheet name="css/authoring.css" />
+        <h:outputStylesheet name="css/editcard.css" />
         <title>Learn Something Every Day!</title>
     </h:head>
     <h:body>
@@ -32,12 +32,17 @@ and open the template in the editor.
         <br/>
         <h:form id="viewcardForm">
             <h:panelGroup id="viewcardStepDisplay">
+                <p:imageSwitch effect="uncover" slideshowSpeed="3000">
+                    <ui:repeat value="#{stepBean.updateImageList()}" var="i" id="effectImages">
+                        <p:graphicImage id="image" value="#{i}" />
+                    </ui:repeat>
+                </p:imageSwitch>
                 <ui:repeat var="s" value="#{stepBean.getSteps_ByCardId()}">
                     <h:graphicImage value="#{s.imageLink}" />
                     <br/>
                     <h:outputFormat value="{0}: {1}">
                         <f:param value="#{s.heading}" />
-                        <f:param value="${s.description}" />
+                        <f:param value="#{s.description}" />
                     </h:outputFormat>
                     <br/><br/>
                 </ui:repeat>
